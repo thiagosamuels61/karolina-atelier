@@ -2,70 +2,43 @@
 
 @layer base {
   body {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
-  h1, h2, h3, .font-serif {
-    font-family: 'Playfair Display', serif;
-  }
-
-  .font-script {
-    font-family: 'Sacramento', cursive;
-  }
-
-  .font-cormorant {
-    font-family: 'Cormorant Garamond', serif;
+  h1, h2, h3, h4, .font-serif {
+    font-family: 'Fraunces', serif;
   }
 }
 
-/* Custom animations & glassmorphism */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+/* Custom CSS classes for light clean theme */
+.light-border {
+  border-color: rgba(0, 0, 0, 0.06);
 }
 
-@keyframes pulse-subtle {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.03); }
-}
-
-.animate-float {
-  animation: float 4s ease-in-out infinite;
-}
-
-.animate-pulse-subtle {
-  animation: pulse-subtle 3s ease-in-out infinite;
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(229, 213, 203, 0.5);
-  box-shadow: 0 10px 30px -10px rgba(139, 69, 19, 0.08);
-}
-
-.glass-card-hover {
+.clean-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px -8px rgba(0, 0, 0, 0.04);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.glass-card-hover:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px -12px rgba(139, 69, 19, 0.15);
-  border-color: rgba(212, 140, 149, 0.6);
+.clean-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.08);
+  border-color: rgba(225, 129, 38, 0.3);
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF6F0;
+  background: #ffffff;
 }
 ::-webkit-scrollbar-thumb {
-  background: #E5D5CB;
-  border-radius: 4px;
+  background: #e9ecef;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D48C95;
+  background: #E18126;
 }

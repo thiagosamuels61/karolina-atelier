@@ -1,16 +1,13 @@
 import { useState } from 'react';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { BentoCampaign } from './components/BentoCampaign';
-import { KitSection } from './components/KitSection';
-import { ProductGrid } from './components/ProductGrid';
-import { Testimonials } from './components/Testimonials';
-import { FAQ } from './components/FAQ';
-import { Footer } from './components/Footer';
+import { VirtualMenu } from './components/VirtualMenu';
 import { OrderModal } from './components/OrderModal';
-import { PRODUCTS, type Product } from './data/products';
-import { generateQuickContactLink } from './utils/whatsapp';
-import { MessageCircle } from 'lucide-react';
+import { Footer } from './components/Footer';
+import type { Product } from './data/products';
+import { generateQuickContactLink, FORMATTED_PHONE } from './utils/whatsapp';
+import { logoImg } from './data/products';
+import { MessageSquareCode, Calendar, Info } from 'lucide-react';
+import imgCopy4 from './image copy 4.png';
 
 export function App() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -23,42 +20,49 @@ export function App() {
     setIsModalOpen(true);
   };
 
-  const handleQuickOrder = () => {
-    // Abre o modal com o Bentô Cake por padrão se nenhum estiver selecionado
-    const defaultProduct = PRODUCTS.find((p) => p.id === 'bento-classico') || PRODUCTS[0];
-    handleOpenModal(defaultProduct);
-  };
-
   return (
-    <div className="min-h-screen bg-[#FAF6F0] text-[#3D2B1F] flex flex-col font-sans selection:bg-[#F4C2C2] selection:text-[#3D2B1F]">
+    <div className="min-h-screen bg-white text-[#111111] flex flex-col font-sans selection:bg-[#E18126]/20 selection:text-[#111111]">
       
-      {/* Barra de Navegação */}
-      <Navbar onOpenQuickOrder={handleQuickOrder} />
+      {/* Navbar Minimalista (Sem Menus Distrativos) */}
+      <Navbar />
 
-      {/* Seção Principal Hero */}
-      <main className="flex-1">
-        <Hero onSelectProduct={handleOpenModal} />
+      {/* Seção de Intro e Apresentação do Atelier */}
+      <main className="flex-1 pb-16">
         
-        {/* Seção de Campanha Especial Bentô Cake (Foco em Anúncios Pago) */}
-        <BentoCampaign onSelectProduct={handleOpenModal} />
-        
-        {/* Combos & Kits Festa Completo */}
-        <KitSection onSelectProduct={handleOpenModal} />
-        
-        {/* Cardápio Detalhado por Categorias */}
-        <ProductGrid onSelectProduct={handleOpenModal} />
-        
-        {/* Depoimentos de Clientes */}
-        <Testimonials />
-        
-        {/* Dúvidas Frequentes */}
-        <FAQ />
+        {/* Banner Principal com a Logo e Informações de Encomenda */}
+        <section className="bg-white py-12 border-b border-gray-50 text-center max-w-4xl mx-auto px-4">
+          <img
+            src={logoImg}
+            alt="Logo Karolina Atelier"
+            className="h-28 w-auto mx-auto object-contain mb-6 animate-pulse-subtle"
+            style={{ animationDuration: '4s' }}
+          />
+          <h1 className="font-serif font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#111111] tracking-tight">
+            Bolos & Doces Artesanais sob Encomenda
+          </h1>
+          <p className="text-gray-500 mt-3 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+            Seja bem-vindo ao nosso cardápio virtual! Todos os nossos produtos são preparados no dia do seu evento com ingredientes selecionados de alta qualidade.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-3 mt-6 text-xs font-semibold text-gray-500">
+            <span className="flex items-center gap-1.5 bg-gray-50 px-3 py-1.5 rounded-xl border border-gray-100">
+              📍 Retirada ou Entrega em Ceilândia - DF
+            </span>
+            <span className="flex items-center gap-1.5 bg-gray-50 px-3 py-1.5 rounded-xl border border-gray-100">
+              💳 Pix, Crédito ou Débito
+            </span>
+          </div>
+        </section>
+
+        {/* Cardápio Virtual Segmentado por Seções de Produtos */}
+        <VirtualMenu onSelectProduct={handleOpenModal} />
+
       </main>
 
-      {/* Rodapé da Página */}
-      <Footer onOpenQuickOrder={handleQuickOrder} />
+      {/* Rodapé Clean */}
+      <Footer onOpenQuickOrder={() => handleOpenModal(null as any)} />
 
-      {/* Modal Interativo de Pedido Qualificado */}
+      {/* Modal de Detalhes, Customização & Combo de Desconto */}
       <OrderModal
         product={selectedProduct}
         isOpen={isModalOpen}
@@ -66,18 +70,20 @@ export function App() {
         initialPhrase={initialPhrase}
       />
 
-      {/* Botão Flutuante Fixo do WhatsApp no Canto Inferior Direito */}
+      {/* Botão Flutuante do WhatsApp Customizado (conforme image copy 4.png) */}
       <a
-        href={generateQuickContactLink('Atendimento Direto')}
+        href={generateQuickContactLink('Pedido no Cardápio')}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-40 bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all flex items-center gap-2 group cursor-pointer border-2 border-white"
-        title="Falar no WhatsApp com a Ana Karolina"
+        className="fixed bottom-6 right-6 z-40 bg-[#25D366] hover:bg-[#20bd5a] text-white pl-4 pr-5 py-3.5 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center gap-3 border-2 border-white cursor-pointer group"
       >
-        <MessageCircle className="w-7 h-7 fill-current" />
-        <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 whitespace-nowrap text-xs font-bold pl-0 group-hover:pl-1">
-          Atendimento WhatsApp
-        </span>
+        <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+          <span className="text-xl">💬</span>
+        </div>
+        <div className="text-left">
+          <span className="text-[9px] uppercase tracking-wider text-amber-200 font-bold block leading-none">Ana Karolina</span>
+          <span className="text-xs sm:text-sm font-bold block leading-none mt-0.5">Pedir no WhatsApp</span>
+        </div>
       </a>
 
     </div>
