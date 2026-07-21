@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { X, MessageCircle, Calendar, Sparkles, User, Gift, Percent, PlusCircle } from 'lucide-react';
+import { X, MessageCircle, Calendar, Sparkles, User, Percent } from 'lucide-react';
 import { type Product, type UpsellOption, BENTO_SUGGESTED_PHRASES, UPSELL_OPTIONS } from '../data/products';
 import { generateWhatsAppLink, LOCATION_TEXT } from '../utils/whatsapp';
 import confetti from 'canvas-confetti';

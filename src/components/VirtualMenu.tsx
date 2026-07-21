@@ -1,6 +1,6 @@
 import React from 'react';
 import { type Product, BENTO_CAKES_LIST, BOLOS_CONFEITADOS_LIST, BRIGADEIROS_LIST, KITS_FESTA_LIST } from '../data/products';
-import { ShoppingBag, Star, Clock, AlertTriangle, Sparkles, Check } from 'lucide-react';
+import { ShoppingBag, Star, Clock, AlertTriangle, Check } from 'lucide-react';
 
 interface VirtualMenuProps {
   onSelectProduct: (product: Product) => void;

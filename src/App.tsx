@@ -4,10 +4,8 @@ import { VirtualMenu } from './components/VirtualMenu';
 import { OrderModal } from './components/OrderModal';
 import { Footer } from './components/Footer';
 import type { Product } from './data/products';
-import { generateQuickContactLink, FORMATTED_PHONE } from './utils/whatsapp';
+import { generateQuickContactLink } from './utils/whatsapp';
 import { logoImg } from './data/products';
-import { MessageSquareCode, Calendar, Info } from 'lucide-react';
-import imgCopy4 from './image copy 4.png';
 
 export function App() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -60,7 +58,7 @@ export function App() {
       </main>
 
       {/* Rodapé Clean */}
-      <Footer onOpenQuickOrder={() => handleOpenModal(null as any)} />
+      <Footer />
 
       {/* Modal de Detalhes, Customização & Combo de Desconto */}
       <OrderModal
