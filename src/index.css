@@ -1,43 +1,80 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-primary: #E18126;
+  --color-brand-dark: #3D2B1F;
+  --color-brand-cream: #FAF6F0;
+  --color-brand-text: #2E2218;
+  
+  --font-serif: "Fraunces", serif;
+  --font-sans: "Montserrat", sans-serif;
+}
+
 @layer base {
   body {
     font-family: 'Montserrat', sans-serif;
+    background-color: #FAF6F0;
+    color: #2E2218;
   }
 
-  h1, h2, h3, h4, .font-serif {
+  h1, h2, h3, h4, h5, h6, .font-serif {
     font-family: 'Fraunces', serif;
   }
 }
 
-/* Custom CSS classes for light clean theme */
-.light-border {
-  border-color: rgba(0, 0, 0, 0.06);
-}
-
-.clean-card {
+/* Donatsu-inspired Custom Classes */
+.premium-card {
   background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 4px 20px -8px rgba(0, 0, 0, 0.04);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(61, 43, 31, 0.08);
+  border-radius: 2rem; /* rounded-3xl */
+  box-shadow: 0 4px 30px -10px rgba(61, 43, 31, 0.04);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.clean-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.08);
+.premium-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -15px rgba(61, 43, 31, 0.1);
   border-color: rgba(225, 129, 38, 0.3);
+}
+
+.premium-button-primary {
+  background-color: #3D2B1F;
+  color: #FAF6F0;
+  border-radius: 1.5rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.premium-button-primary:hover {
+  background-color: #E18126;
+  transform: scale(1.02);
+}
+
+.premium-button-secondary {
+  background-color: transparent;
+  color: #3D2B1F;
+  border: 2px solid #3D2B1F;
+  border-radius: 1.5rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.premium-button-secondary:hover {
+  background-color: #3D2B1F;
+  color: #FAF6F0;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #FAF6F0;
 }
 ::-webkit-scrollbar-thumb {
-  background: #e9ecef;
-  border-radius: 3px;
+  background: #E5D5CB;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #E18126;

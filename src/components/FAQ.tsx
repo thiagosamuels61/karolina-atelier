@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { HelpCircle, ChevronDown, PhoneCall } from 'lucide-react';
 import { generateQuickContactLink } from '../utils/whatsapp';
+import { trackEvent } from '../utils/pixel';
 
 export const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -92,6 +93,7 @@ export const FAQ: React.FC = () => {
             href={generateQuickContactLink('Dúvida sobre Entregas ou Prazos')}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent('Contact', { content_name: 'Dúvida FAQ WhatsApp' })}
             className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-6 py-3 rounded-full font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all"
           >
             <PhoneCall className="w-4 h-4" />

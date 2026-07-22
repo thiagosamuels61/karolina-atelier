@@ -1,25 +1,13 @@
 import React from 'react';
-import { MapPin, PhoneCall } from 'lucide-react';
-import { generateQuickContactLink, FORMATTED_PHONE, LOCATION_TEXT } from '../utils/whatsapp';
+import { ShoppingCart } from 'lucide-react';
 import { logoImg } from '../data/products';
 
 export const Navbar: React.FC = () => {
   return (
-    <header className="w-full bg-white border-b border-gray-100">
-      {/* Top Bar Informativo */}
-      <div className="bg-[#111111] text-[#FAF6F0] py-2.5 px-4 text-xs sm:text-sm text-center font-medium flex items-center justify-center gap-2 shadow-inner">
-        <span className="inline-flex items-center gap-1 bg-[#E18126]/20 text-amber-200 px-2 py-0.5 rounded-full text-[10px] font-bold border border-[#E18126]/30">
-          🟢 AGENDA ABERTA
-        </span>
-        <span>• Peça com antecedência mínima de 1 a 2 dias em</span>
-        <span className="inline-flex items-center gap-1 text-[#E18126] font-bold">
-          <MapPin className="w-3.5 h-3.5" /> {LOCATION_TEXT}
-        </span>
-      </div>
-
-      {/* Main Navbar Clean (Sem Menus de Navegação complexos) */}
-      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        {/* Logo Centralizado/Esquerda */}
+    <header className="w-full bg-[#FAF6F0] border-b border-[#3D2B1F]/10 sticky top-0 z-50 backdrop-blur-md bg-opacity-90">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        
+        {/* Logo e Nome da Marca */}
         <div className="flex items-center gap-3">
           <img
             src={logoImg}
@@ -27,25 +15,24 @@ export const Navbar: React.FC = () => {
             className="h-12 w-auto sm:h-14 object-contain"
           />
           <div>
-            <span className="font-serif font-extrabold text-lg sm:text-xl text-[#111111] tracking-wide block leading-tight">
+            <span className="font-serif font-extrabold text-lg sm:text-xl text-[#3D2B1F] tracking-wide block leading-tight">
               Karolina Atelier
             </span>
-            <span className="text-[10px] sm:text-xs text-gray-400 tracking-wider uppercase font-bold block">
-              Cardápio Virtual • Ceilândia-DF
+            <span className="text-[10px] sm:text-xs text-[#E18126] tracking-wider uppercase font-bold block">
+              Confeitaria Fina
             </span>
           </div>
         </div>
 
-        {/* WhatsApp Rápido */}
+        {/* CTA Button Direto ao Ponto */}
         <a
-          href={generateQuickContactLink()}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#E18126] hover:text-[#111111] transition-colors"
+          href="#menu-secoes"
+          className="inline-flex items-center gap-2 bg-[#3D2B1F] hover:bg-[#E18126] text-[#FAF6F0] px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 shadow-md hover:scale-[1.03] cursor-pointer"
         >
-          <PhoneCall className="w-4 h-4 text-[#25D366]" />
-          <span>Falar com Ana: {FORMATTED_PHONE}</span>
+          <ShoppingCart className="w-4 h-4" />
+          <span>Fazer Encomenda</span>
         </a>
+
       </div>
     </header>
   );
