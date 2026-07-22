@@ -4,7 +4,7 @@ import { logoImg } from '../data/products';
 export const Navbar: React.FC = () => {
   return (
     <header className="w-full bg-[#FAF6F0] border-b border-[#3D2B1F]/10 sticky top-0 z-50 backdrop-blur-md bg-opacity-90">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-center sm:justify-start">
         
         {/* Logo e Nome da Marca */}
         <div className="flex items-center gap-3">
