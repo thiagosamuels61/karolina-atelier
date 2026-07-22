@@ -262,7 +262,7 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
     <div id="menu-secoes" className="bg-[#FAF6F0] py-12 sm:py-20 space-y-24 max-w-6xl mx-auto px-4">
       
       {/* Aviso de Prazo e Atendimento (Sem Emojis, Direto ao Ponto) */}
-      <div className="bg-white p-6 rounded-[2rem] border border-[#3D2B1F]/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-sm">
+      <div className="bg-white p-6 rounded-[2rem] border border-[#3D2B1F]/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-sm animate-fade-in-up">
         <div className="space-y-1.5">
           <h4 className="font-serif font-bold text-[#3D2B1F] text-lg sm:text-xl">
             Informações sobre Encomendas
@@ -280,7 +280,7 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
       </div>
 
       {/* SEÇÃO 1: BENTÔ CAKES */}
-      <section id="bento" className="space-y-8 scroll-mt-24">
+      <section id="bento" className="space-y-8 scroll-mt-24 animate-fade-in-up">
         <div className="border-b border-[#3D2B1F]/15 pb-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
           <div>
             <h2 className="text-3xl font-serif font-bold text-[#3D2B1F] tracking-tight">
@@ -300,7 +300,7 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
       </section>
 
       {/* SEÇÃO 2: BOLOS CONFEITADOS (Imagem Destaque) */}
-      <section id="bolos" className="space-y-8 scroll-mt-24">
+      <section id="bolos" className="space-y-8 scroll-mt-24 animate-fade-in-up">
         <div className="border-b border-[#3D2B1F]/15 pb-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
           <div>
             <h2 className="text-3xl font-serif font-bold text-[#3D2B1F] tracking-tight">
@@ -320,7 +320,7 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
       </section>
 
       {/* SEÇÃO 3: BRIGADEIROS GOURMET */}
-      <section id="brigadeiros" className="space-y-8 scroll-mt-24">
+      <section id="brigadeiros" className="space-y-8 scroll-mt-24 animate-fade-in-up">
         <div className="border-b border-[#3D2B1F]/15 pb-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
           <div>
             <h2 className="text-3xl font-serif font-bold text-[#3D2B1F] tracking-tight">
@@ -340,7 +340,7 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
       </section>
 
       {/* SEÇÃO 4: KITS FESTA COMBO (Fiel ao image 9.jpg) */}
-      <section id="kits" className="space-y-8 scroll-mt-24">
+      <section id="kits" className="space-y-8 scroll-mt-24 animate-fade-in-up">
         <div className="border-b border-[#3D2B1F]/15 pb-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
           <div>
             <h2 className="text-3xl font-serif font-bold text-[#3D2B1F] tracking-tight">

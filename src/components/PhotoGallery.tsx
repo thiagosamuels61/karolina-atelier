@@ -13,7 +13,7 @@ export const PhotoGallery: React.FC = () => {
     : GALLERY_IMAGES.filter(img => img.category === activeCategory);
 
   return (
-    <section id="galeria" className="py-16 sm:py-24 bg-[#FAF6F0] border-t border-[#3D2B1F]/10">
+    <section id="galeria" className="py-16 sm:py-24 bg-[#FAF6F0] border-t border-[#3D2B1F]/10 animate-fade-in-up">
       <div className="max-w-6xl mx-auto px-4">
         
         {/* Título da Seção (Sem Emojis, Sem Tracinhos, Premium) */}

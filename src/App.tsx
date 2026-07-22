@@ -49,21 +49,21 @@ export function App() {
       <main className="flex-1 pb-16">
         
         {/* Seção Hero (Conforme flyer image copy 10.png, sem emojis/tracinhos) */}
-        <section className="bg-white py-16 border-b border-[#3D2B1F]/10 text-center max-w-4xl mx-auto px-4 my-8 rounded-[2.5rem] shadow-sm">
+        <section className="bg-white py-16 border-b border-[#3D2B1F]/10 text-center max-w-4xl mx-auto px-4 my-8 rounded-[2.5rem] shadow-sm animate-scale-in">
           <img
             src={logoImg}
             alt="Logo Karolina Atelier"
-            className="h-28 w-auto mx-auto object-contain mb-8 animate-pulse-subtle"
+            className="h-28 w-auto mx-auto object-contain mb-8 animate-pulse-subtle animate-fade-in-up"
             style={{ animationDuration: '6s' }}
           />
-          <h1 className="font-serif font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#3D2B1F] tracking-tight leading-tight">
+          <h1 className="font-serif font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#3D2B1F] tracking-tight leading-tight animate-fade-in-up animation-delay-100">
             Bolos e Doces <span className="text-[#E18126]">Artesanais</span> sob Encomenda
           </h1>
-          <p className="text-[#3D2B1F]/60 mt-4 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[#3D2B1F]/60 mt-4 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed animate-fade-in-up animation-delay-200">
             Seja bem-vindo ao nosso cardápio virtual. Todos os nossos produtos são preparados no dia do seu evento com ingredientes selecionados de alta qualidade.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-3 mt-8 text-xs font-bold text-[#3D2B1F]/80">
+          <div className="flex flex-wrap justify-center gap-3 mt-8 text-xs font-bold text-[#3D2B1F]/80 animate-fade-in-up animation-delay-300">
             <span className="bg-[#FAF6F0] px-4 py-2 rounded-full border border-[#3D2B1F]/10">
               Retirada ou Entrega em Ceilândia - DF
             </span>
