@@ -14,14 +14,6 @@ export const Navbar: React.FC = () => {
             alt="Karolina Atelier Logo"
             className="h-12 w-auto sm:h-14 object-contain"
           />
-          <div>
-            <span className="font-serif font-extrabold text-lg sm:text-xl text-[#3D2B1F] tracking-wide block leading-tight">
-              Karolina Atelier
-            </span>
-            <span className="text-[10px] sm:text-xs text-[#E18126] tracking-wider uppercase font-bold block">
-              Confeitaria Fina
-            </span>
-          </div>
         </div>
 
         {/* CTA Button Direto ao Ponto */}
