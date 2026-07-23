@@ -57,6 +57,28 @@ import bentoLoving from '@bento/Captura_de_tela_2026-07-23_071042.png_2026072307
 import boloCelebre1 from '@bolos/Captura de tela 2026-07-21 140447.png';
 import boloCelebre2 from '@bolos/Captura de tela 2026-07-21 140451.png';
 
+// Fotos do Carrossel de 1 a 14
+import carImg1 from '@images/Fotos para o carrossel/1.png';
+import carImg2 from '@images/Fotos para o carrossel/2.png';
+import carImg3 from '@images/Fotos para o carrossel/3.png';
+import carImg4 from '@images/Fotos para o carrossel/4.png';
+import carImg5 from '@images/Fotos para o carrossel/5.png';
+import carImg6 from '@images/Fotos para o carrossel/6.png';
+import carImg7 from '@images/Fotos para o carrossel/7.png';
+import carImg8 from '@images/Fotos para o carrossel/8.png';
+import carImg9 from '@images/Fotos para o carrossel/9.png';
+import carImg10 from '@images/Fotos para o carrossel/10.png';
+import carImg11 from '@images/Fotos para o carrossel/11.png';
+import carImg12 from '@images/Fotos para o carrossel/12.png';
+import carImg13 from '@images/Fotos para o carrossel/13.png';
+import carImg14 from '@images/Fotos para o carrossel/14.png';
+
+export const carouselImages = [
+  carImg1, carImg2, carImg3, carImg4, carImg5,
+  carImg6, carImg7, carImg8, carImg9, carImg10,
+  carImg11, carImg12, carImg13, carImg14
+];
+
 export {
   logoImg,
   logoWhiteBg,
@@ -153,8 +175,8 @@ export const BENTO_CAKES_LIST: Product[] = [
     priceText: 'R$ 60,00',
     unitText: 'unidade (~350g - serve de 1 a 2 pessoas)',
     description: 'Mini bolo na marmita de 10cm com cobertura em buttercream e decoração simples de até três cores com o personagem Flork e a sua frase personalizada. Acompanha lancheira biodegradável.',
-    minLeadTimeDays: 2,
-    minLeadTimeText: 'Encomenda com 2 dias de antecedência',
+    minLeadTimeDays: 1,
+    minLeadTimeText: 'Encomenda com 1 dia de antecedência',
     image: bentoHighlight,
     gallery: [bentoHighlight, bentoImg1, bentoImg2, bentoImg3, bentoImg4],
     isPopular: true,
@@ -186,8 +208,8 @@ export const BOLOS_CONFEITADOS_LIST: Product[] = [
     priceText: 'A partir de R$ 85,00 / kg',
     unitText: 'escolha de 1 a 4kg (+ R$ 8,00 embalagem)',
     description: 'Bolos festivos com cobertura premium em Chantininho e decorações artesanais sofisticadas. Massa umedecida e fofinha com camadas caprichadas de recheio. Obs: Sabores especiais possuem acréscimo de R$ 10,00/kg.',
-    minLeadTimeDays: 3,
-    minLeadTimeText: 'Encomenda com 3 dias de antecedência',
+    minLeadTimeDays: 2,
+    minLeadTimeText: 'Encomenda com 2 dias de antecedência',
     image: boloImg3,
     gallery: [boloImg3, boloImg1, boloImg2, boloImg4, boloImg5],
     isPopular: true,
@@ -224,8 +246,8 @@ export const BRIGADEIROS_LIST: Product[] = [
     priceText: 'A partir de R$ 90,00',
     unitText: 'Escolha a quantidade desejada',
     description: 'Docinhos finos enrolados individualmente com confeitos selecionados e chocolate nobre. Escolha até 3 sabores por cento. Favor nos enviar a cor desejada das forminhas no WhatsApp.',
-    minLeadTimeDays: 3,
-    minLeadTimeText: 'Encomenda com 3 dias de antecedência',
+    minLeadTimeDays: 2,
+    minLeadTimeText: 'Encomenda com 2 dias de antecedência',
     image: brigImg1,
     gallery: [brigImg1, brigImg2, brigImg3, brigImg4],
     isPopular: true,

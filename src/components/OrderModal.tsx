@@ -70,10 +70,10 @@ export const OrderModal: React.FC<OrderModalProps> = ({
     minAllowedDate.setDate(minAllowedDate.getDate() + product.minLeadTimeDays);
 
     if (chosenDate < minAllowedDate) {
-      if (product.minLeadTimeDays === 2) {
-        setDateError('Aviso: Encomendas deste produto exigem pelo menos 2 dias de antecedência.');
+      if (product.minLeadTimeDays === 1) {
+        setDateError('Aviso: Encomendas deste produto exigem pelo menos 1 dia de antecedência.');
       } else {
-        setDateError('Aviso: Encomendas deste produto exigem pelo menos 3 dias de antecedência para preparo.');
+        setDateError('Aviso: Encomendas deste produto exigem pelo menos 2 dias de antecedência para preparo.');
       }
     } else {
       setDateError('');
@@ -302,13 +302,13 @@ export const OrderModal: React.FC<OrderModalProps> = ({
               className="w-20 h-20 rounded-xl object-cover"
             />
             <div>
-              <span className="text-[10px] font-bold text-[#E18126] uppercase tracking-wider block">
+              <span className="text-[10px] font-bold text-[#C0707D] uppercase tracking-wider block">
                 {product.minLeadTimeText}
               </span>
               <h4 className="font-serif font-bold text-base text-[#3D2B1F]">
                 {product.title}
               </h4>
-              <p className="text-lg font-serif font-bold text-[#E18126] mt-0.5">
+              <p className="text-lg font-serif font-bold text-[#C0707D] mt-0.5">
                 {product.priceText}
               </p>
             </div>
@@ -328,8 +328,8 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                     onClick={() => setSelectedSize(sz.label)}
                     className={`p-3.5 rounded-xl text-xs font-semibold text-left border transition-all cursor-pointer ${
                       selectedSize === sz.label
-                        ? 'bg-[#E18126] text-[#FAF6F0] border-[#E18126] shadow-sm'
-                        : 'bg-white text-[#3D2B1F] border-[#3D2B1F]/15 hover:border-[#E18126]'
+                        ? 'bg-[#C0707D] text-[#FAF6F0] border-[#C0707D] shadow-sm'
+                        : 'bg-white text-[#3D2B1F] border-[#3D2B1F]/15 hover:border-[#C0707D]'
                     }`}
                   >
                     {sz.label}
@@ -348,7 +348,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
               <select
                 value={selectedFlavor}
                 onChange={(e) => setSelectedFlavor(e.target.value)}
-                className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm font-semibold text-[#3D2B1F] focus:outline-none focus:ring-2 focus:ring-[#E18126]"
+                className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm font-semibold text-[#3D2B1F] focus:outline-none focus:ring-2 focus:ring-[#C0707D]"
               >
                 {product.flavors.map((flv, idx) => (
                   <option key={idx} value={flv}>
@@ -357,7 +357,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                 ))}
               </select>
               {isSpecialBoloFlavor && product.category === 'bolos' && (
-                <p className="text-[11px] text-[#E18126] font-bold mt-1 bg-[#E18126]/5 p-2.5 rounded-lg border border-[#E18126]/10">
+                <p className="text-[11px] text-[#C0707D] font-bold mt-1 bg-[#C0707D]/5 p-2.5 rounded-lg border border-[#C0707D]/10">
                   * Este recheio especial possui ingredientes nobres (Nutella / Geleia de Morango / Nozes) e tem um acréscimo de R$ 10,00 por kg (incluso no cálculo total).
                 </p>
               )}
@@ -377,7 +377,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                   placeholder="Ex: Brigadeiro ao leite, Ninho com nutella, Casadinho"
                   value={brigadeiroFlavorsText}
                   onChange={(e) => setBrigadeiroFlavorsText(e.target.value)}
-                  className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm text-[#3D2B1F] focus:outline-none focus:ring-2 focus:ring-[#E18126]"
+                  className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm text-[#3D2B1F] focus:outline-none focus:ring-2 focus:ring-[#C0707D]"
                 />
               </div>
 
@@ -390,7 +390,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                   placeholder="Ex: Forminhas brancas, vermelhas, azuis..."
                   value={brigadeiroForminhaColor}
                   onChange={(e) => setOriginalForminhaColor(e)}
-                  className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm text-[#3D2B1F] focus:outline-none focus:ring-2 focus:ring-[#E18126]"
+                  className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm text-[#3D2B1F] focus:outline-none focus:ring-2 focus:ring-[#C0707D]"
                 />
               </div>
             </div>
@@ -413,7 +413,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                 placeholder="Escreva a frase desejada"
                 value={bentoPhrase}
                 onChange={(e) => setBentoPhrase(e.target.value)}
-                className={`w-full px-4 py-3.5 rounded-xl border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#E18126] text-[#3D2B1F] ${
+                className={`w-full px-4 py-3.5 rounded-xl border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#C0707D] text-[#3D2B1F] ${
                   isPhraseOverLimit ? 'border-red-500' : 'border-[#3D2B1F]/15'
                 }`}
               />
@@ -435,7 +435,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                     key={idx}
                     type="button"
                     onClick={() => setBentoPhrase(ph)}
-                    className="text-[11px] bg-white hover:bg-[#E18126]/10 text-[#3D2B1F] border border-[#3D2B1F]/15 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+                    className="text-[11px] bg-white hover:bg-[#C0707D]/10 text-[#3D2B1F] border border-[#3D2B1F]/15 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
                   >
                     "{ph}"
                   </button>
@@ -461,7 +461,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                   }`}
                 >
                   <span>Laço de Fita</span>
-                  <span className="text-[10px] text-[#E18126] font-extrabold">+R$ 2,00</span>
+                  <span className="text-[10px] text-[#C0707D] font-extrabold">+R$ 2,00</span>
                 </button>
 
                 <button
@@ -474,7 +474,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                   }`}
                 >
                   <span>Colher de plástico</span>
-                  <span className="text-[10px] text-[#E18126] font-extrabold">+R$ 1,00</span>
+                  <span className="text-[10px] text-[#C0707D] font-extrabold">+R$ 1,00</span>
                 </button>
 
                 <button
@@ -487,7 +487,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                   }`}
                 >
                   <span>Mini Vela</span>
-                  <span className="text-[10px] text-[#E18126] font-extrabold">+R$ 1,00</span>
+                  <span className="text-[10px] text-[#C0707D] font-extrabold">+R$ 1,00</span>
                 </button>
               </div>
             </div>
@@ -514,7 +514,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                     <span className="block">Cobertura com Brilho / Glitter / Aveludado</span>
                     <span className="text-[10px] font-medium text-gray-400 block mt-0.5">Adiciona textura sofisticada para eventos</span>
                   </div>
-                  <span className="text-xs text-[#E18126] font-extrabold whitespace-nowrap ml-4">+R$ 10,00 / kg</span>
+                  <span className="text-xs text-[#C0707D] font-extrabold whitespace-nowrap ml-4">+R$ 10,00 / kg</span>
                 </button>
 
                 <button
@@ -530,7 +530,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                     <span className="block">Desejo em formato de Coração ou Vintage Cake</span>
                     <span className="text-[10px] font-medium text-gray-400 block mt-0.5">Lindo design diferenciado retro-vintage</span>
                   </div>
-                  <span className="text-xs text-[#E18126] font-extrabold whitespace-nowrap ml-4">A consultar</span>
+                  <span className="text-xs text-[#C0707D] font-extrabold whitespace-nowrap ml-4">A consultar</span>
                 </button>
               </div>
 
@@ -542,8 +542,8 @@ export const OrderModal: React.FC<OrderModalProps> = ({
           )}
 
           {/* Monte seu Combo Especial (Combo Dinâmico) */}
-          <div className="bg-amber-50/40 p-5 rounded-2xl border border-[#E18126]/20 space-y-4 font-sans text-sm text-[#3D2B1F]">
-            <h5 className="text-xs font-bold text-[#E18126] uppercase tracking-widest flex items-center gap-1">
+          <div className="bg-amber-50/40 p-5 rounded-2xl border border-[#C0707D]/20 space-y-4 font-sans text-sm text-[#3D2B1F]">
+            <h5 className="text-xs font-bold text-[#C0707D] uppercase tracking-widest flex items-center gap-1">
               <Sparkles className="w-4 h-4" /> Monte seu Combo Especial (Opcional)
             </h5>
             <p className="text-[11px] text-gray-500 font-medium">
@@ -559,7 +559,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                 <select
                   value={comboBrigadeiros}
                   onChange={(e) => setComboBrigadeiros(e.target.value)}
-                  className="w-full p-3 rounded-xl border border-[#3D2B1F]/15 bg-white text-xs font-bold text-[#3D2B1F] focus:outline-none focus:ring-2 focus:ring-[#E18126]"
+                  className="w-full p-3 rounded-xl border border-[#3D2B1F]/15 bg-white text-xs font-bold text-[#3D2B1F] focus:outline-none focus:ring-2 focus:ring-[#C0707D]"
                 >
                   <option value="none">Não adicionar docinhos</option>
                   <option value="meio">Meio Cento (50 un) - +R$ 90,00</option>
@@ -579,7 +579,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setComboBentoCakes(Math.max(0, comboBentoCakes - 1))}
-                    className="w-10 h-10 rounded-xl bg-white border border-[#3D2B1F]/15 text-sm font-bold text-[#3D2B1F] hover:border-[#E18126] transition-colors cursor-pointer"
+                    className="w-10 h-10 rounded-xl bg-white border border-[#3D2B1F]/15 text-sm font-bold text-[#3D2B1F] hover:border-[#C0707D] transition-colors cursor-pointer"
                   >
                     -
                   </button>
@@ -587,12 +587,12 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setComboBentoCakes(Math.min(4, comboBentoCakes + 1))}
-                    className="w-10 h-10 rounded-xl bg-white border border-[#3D2B1F]/15 text-sm font-bold text-[#3D2B1F] hover:border-[#E18126] transition-colors cursor-pointer"
+                    className="w-10 h-10 rounded-xl bg-white border border-[#3D2B1F]/15 text-sm font-bold text-[#3D2B1F] hover:border-[#C0707D] transition-colors cursor-pointer"
                   >
                     +
                   </button>
                   {comboBentoCakes > 0 && (
-                    <span className="text-xs font-bold text-[#E18126]">
+                    <span className="text-xs font-bold text-[#C0707D]">
                       +R$ {(comboBentoCakes * 60.00).toFixed(2).replace('.', ',')}
                     </span>
                   )}
@@ -605,7 +605,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
               <label className="block text-xs font-bold text-[#3D2B1F] uppercase tracking-wider flex items-center gap-1">
-                <Calendar className="w-3.5 h-3.5 text-[#E18126]" /> Data de Entrega/Retirada:
+                <Calendar className="w-3.5 h-3.5 text-[#C0707D]" /> Data de Entrega/Retirada:
               </label>
               <input
                 type="date"
@@ -613,7 +613,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                 min={getMinDateString()}
                 value={eventDate}
                 onChange={handleDateChange}
-                className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#E18126]"
+                className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#C0707D]"
               />
               {dateError && (
                 <p className="text-[10px] text-red-500 font-semibold leading-tight pt-1">
@@ -624,7 +624,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
 
             <div className="space-y-1.5">
               <label className="block text-xs font-bold text-[#3D2B1F] uppercase tracking-wider flex items-center gap-1">
-                <User className="w-3.5 h-3.5 text-[#E18126]" /> Seu Nome:
+                <User className="w-3.5 h-3.5 text-[#C0707D]" /> Seu Nome:
               </label>
               <input
                 type="text"
@@ -632,7 +632,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                 placeholder="Seu nome"
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
-                className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#E18126]"
+                className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#C0707D]"
               />
             </div>
           </div>
@@ -647,7 +647,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
               placeholder="Ex: Gostaria de retirar pela tarde, etc..."
               value={additionalNotes}
               onChange={(e) => setAdditionalNotes(e.target.value)}
-              className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#E18126]"
+              className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#C0707D]"
             />
           </div>
 
@@ -657,7 +657,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
 
             <div className="flex items-center justify-between text-sm font-bold text-[#3D2B1F]">
               <span>Valor Total da Encomenda:</span>
-              <span className="text-xl font-serif text-[#E18126]">{formattedCalculatedPrice}</span>
+              <span className="text-xl font-serif text-[#C0707D]">{formattedCalculatedPrice}</span>
             </div>
 
             <button
@@ -666,7 +666,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
               className={`w-full text-white py-4 px-6 rounded-2xl font-bold text-base shadow-xl flex items-center justify-center gap-3 transition-all cursor-pointer ${
                 dateError || !eventDate
                   ? 'bg-gray-300 cursor-not-allowed shadow-none'
-                  : 'bg-[#3D2B1F] hover:bg-[#E18126] hover:shadow-2xl hover:scale-[1.01]'
+                  : 'bg-[#3D2B1F] hover:bg-[#a65663] hover:shadow-2xl hover:scale-[1.01]'
               }`}
             >
               <MessageCircle className="w-6 h-6 fill-current" />

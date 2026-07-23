@@ -17,10 +17,10 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
     return (
       <div
         key={product.id}
-        className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 py-12 border-b border-[#3D2B1F]/10 last:border-b-0 font-sans"
+        className="flex flex-col md:flex-row gap-8 md:gap-12 py-12 border-b border-[#3D2B1F]/10 last:border-b-0 font-sans"
       >
-        {/* Coluna da Imagem (Foto com cantos arredondados) */}
-        <div className="w-full h-80 sm:h-[400px] md:h-[450px] overflow-hidden rounded-[2rem] shadow-sm bg-white">
+        {/* Coluna da Imagem (Dimensões exatas: 704x766px em desktop) */}
+        <div className="w-full h-80 sm:h-[450px] md:w-[704px] md:h-[766px] overflow-hidden rounded-[2rem] shadow-sm bg-white flex-shrink-0">
           <img
             src={product.image}
             alt={product.title}
@@ -28,13 +28,13 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
           />
         </div>
 
-        {/* Coluna de Informações (Informações relevantes ao lado) */}
-        <div className="flex flex-col justify-between py-2 space-y-6">
+        {/* Coluna de Informações (Toma o espaço restante flex-1) */}
+        <div className="flex-1 flex flex-col justify-between py-2 space-y-6">
           <div className="space-y-4">
             
             {/* Tag de Antecedência */}
             <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#3D2B1F]/60 bg-[#3D2B1F]/5 w-fit px-2.5 py-1 rounded-lg uppercase tracking-wider">
-              <Clock className="w-3.5 h-3.5 text-[#E18126]" />
+              <Clock className="w-3.5 h-3.5 text-[#C0707D]" />
               <span>{product.minLeadTimeText}</span>
             </div>
 
@@ -45,7 +45,7 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
             {/* Preço em destaque diretamente */}
             <div className="flex items-baseline gap-2 pt-1">
               <span className="text-sm font-bold text-[#3D2B1F]/60">A partir de</span>
-              <span className="text-3xl sm:text-4xl font-serif font-extrabold text-[#E18126]">
+              <span className="text-3xl sm:text-4xl font-serif font-extrabold text-[#C0707D]">
                 {product.priceText}
               </span>
               <span className="text-xs text-gray-500 font-bold">
@@ -65,19 +65,19 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
                 </span>
                 <ul className="text-xs sm:text-sm text-[#3D2B1F]/80 grid grid-cols-1 sm:grid-cols-2 gap-2 font-medium">
                   <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#E18126] flex-shrink-0" />
+                    <Check className="w-4 h-4 text-[#C0707D] flex-shrink-0" />
                     <span>Massa Chocolate ou Baunilha</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#E18126] flex-shrink-0" />
+                    <Check className="w-4 h-4 text-[#C0707D] flex-shrink-0" />
                     <span>Recheio Brigadeiro ou Beijinho</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#E18126] flex-shrink-0" />
+                    <Check className="w-4 h-4 text-[#C0707D] flex-shrink-0" />
                     <span>Recheio Ninho ou Doce de Leite</span>
                   </li>
-                  <li className="flex items-center gap-2 text-[#E18126] font-semibold">
-                    <Check className="w-4 h-4 text-[#E18126] flex-shrink-0" />
+                  <li className="flex items-center gap-2 text-[#C0707D] font-semibold">
+                    <Check className="w-4 h-4 text-[#C0707D] flex-shrink-0" />
                     <span>Ninho c/ Nutella ou Morango (+R$ 5,00)</span>
                   </li>
                 </ul>
@@ -97,8 +97,8 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
                     const isSpecial = flv.includes('+R$');
                     return (
                       <div key={idx} className="flex items-center gap-2">
-                        <Check className="w-4 h-4 text-[#E18126] flex-shrink-0" />
-                        <span className={isSpecial ? 'text-[#E18126] font-semibold' : ''}>
+                        <Check className="w-4 h-4 text-[#C0707D] flex-shrink-0" />
+                        <span className={isSpecial ? 'text-[#C0707D] font-semibold' : ''}>
                           {flv}
                         </span>
                       </div>
@@ -121,7 +121,7 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-[#3D2B1F]/80 font-medium">
                   {product.flavors?.map((flv, idx) => (
                     <div key={idx} className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-[#E18126] flex-shrink-0" />
+                      <Check className="w-4 h-4 text-[#C0707D] flex-shrink-0" />
                       <span>{flv}</span>
                     </div>
                   ))}
@@ -153,21 +153,15 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
     <div id="menu-secoes" className="bg-[#FAF6F0] py-12 sm:py-20 space-y-24 max-w-6xl mx-auto px-4">
       
       {/* Aviso de Prazo e Atendimento */}
-      <div className="bg-white p-6 rounded-[2rem] border border-[#3D2B1F]/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-sm animate-fade-in-up">
+      <div className="bg-white p-6 rounded-[2rem] border border-[#3D2B1F]/10 flex flex-col items-center justify-center gap-4 shadow-sm animate-fade-in-up text-center">
         <div className="space-y-1.5">
           <h4 className="font-serif font-bold text-[#3D2B1F] text-lg sm:text-xl">
             Informações sobre Encomendas
           </h4>
           <p className="text-xs sm:text-sm text-gray-500 leading-relaxed font-sans font-bold">
-            Pedidos de Bentô Cakes devem ser feitos com no mínimo <strong>2 dias de antecedência</strong>. Bolos confeitados e Brigadeiros Gourmet exigem pelo menos <strong>3 dias de antecedência</strong>.
+            Bento cakes com <strong>1 dia de antecedência</strong> e bolos com <strong>2 dias de antecedência</strong>.
           </p>
         </div>
-        <a
-          href="#bolos"
-          className="bg-[#3D2B1F] hover:bg-[#E18126] text-[#FAF6F0] text-xs sm:text-sm font-bold px-6 py-3 rounded-full transition-colors whitespace-nowrap cursor-pointer shadow-sm font-sans"
-        >
-          Ver Bolos Confeitados
-        </a>
       </div>
 
       {/* SEÇÃO 1: BENTÔ CAKES */}
@@ -181,8 +175,8 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
               Mini bolos individuais no buttercream com desenhos de Flork e frases divertidas.
             </p>
           </div>
-          <span className="text-xs font-bold text-[#E18126] bg-[#E18126]/10 px-4 py-1.5 rounded-full uppercase tracking-wider w-fit font-sans">
-            2 dias de antecedência
+          <span className="text-xs font-bold text-[#C0707D] bg-[#C0707D]/10 px-4 py-1.5 rounded-full uppercase tracking-wider w-fit font-sans">
+            {BENTO_CAKES_LIST[0].minLeadTimeText}
           </span>
         </div>
         <div className="space-y-8">
@@ -201,8 +195,8 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
               Feitos por kg (mínimo de 1kg). Cobertura em Chantininho cremoso estruturado.
             </p>
           </div>
-          <span className="text-xs font-bold text-[#E18126] bg-[#E18126]/10 px-4 py-1.5 rounded-full uppercase tracking-wider w-fit font-sans">
-            3 dias de antecedência
+          <span className="text-xs font-bold text-[#C0707D] bg-[#C0707D]/10 px-4 py-1.5 rounded-full uppercase tracking-wider w-fit font-sans">
+            {BOLOS_CONFEITADOS_LIST[0].minLeadTimeText}
           </span>
         </div>
         <div className="space-y-8">
@@ -221,8 +215,8 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
               Enrolados artesanalmente com chocolate nobre e confeitos especiais.
             </p>
           </div>
-          <span className="text-xs font-bold text-[#E18126] bg-[#E18126]/10 px-4 py-1.5 rounded-full uppercase tracking-wider w-fit font-sans">
-            3 dias de antecedência
+          <span className="text-xs font-bold text-[#C0707D] bg-[#C0707D]/10 px-4 py-1.5 rounded-full uppercase tracking-wider w-fit font-sans">
+            {BRIGADEIROS_LIST[0].minLeadTimeText}
           </span>
         </div>
         <div className="space-y-8">

@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Navbar } from './components/Navbar';
+import { useState, useEffect } from 'react';
 import { VirtualMenu } from './components/VirtualMenu';
 import { PhotoGallery } from './components/PhotoGallery';
 import { OrderModal } from './components/OrderModal';
@@ -8,6 +7,7 @@ import type { Product } from './data/products';
 import { generateQuickContactLink } from './utils/whatsapp';
 import {
   logoImg,
+  carouselImages,
   bentoHighlight,
   bentoCelebre,
   bentoFunny1,
@@ -18,19 +18,20 @@ import {
 import { trackEvent } from './utils/pixel';
 import whatsappIcon from '@images/image copy 4.png';
 
-const carouselImages = [
-  bentoHighlight,
-  bentoCelebre,
-  bentoFunny1,
-  bentoLoving,
-  boloCelebre1,
-  boloCelebre2
-];
-
 export function App() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [initialPhrase, setInitialPhrase] = useState('');
+  const [isSticky, setIsSticky] = useState(false);
+
+  // Monitora rolagem de página para fixar o logo
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 150);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleOpenModal = (product: Product, phrase?: string) => {
     setSelectedProduct(product);
@@ -57,13 +58,15 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF6F0] text-[#3D2B1F] flex flex-col font-sans selection:bg-[#E18126]/20 selection:text-[#3D2B1F]">
+    <div className="min-h-screen bg-[#FAF6F0] text-[#3D2B1F] flex flex-col font-sans selection:bg-[#C0707D]/20 selection:text-[#3D2B1F] overflow-x-hidden">
       
-      {/* Header Fixo com Logo e CTA */}
-      <Navbar />
+      {/* Logo Fixo Flutuante ao Rolar a Página (Conforme solicitado) */}
+      <div className={`fixed top-0 left-0 right-0 z-50 bg-[#FAF6F0]/90 backdrop-blur-md border-b border-[#3D2B1F]/10 py-3.5 flex justify-center transition-all duration-300 ${isSticky ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}>
+        <img src={logoImg} alt="Karolina Atelier Logo" className="h-10 w-auto object-contain" />
+      </div>
 
       {/* Seção Principal */}
-      <main className="flex-1 pb-16">
+      <main className="flex-1 pb-16 overflow-x-hidden">
         
         {/* Seção Hero */}
         <section className="py-12 sm:py-20 text-center mx-auto px-4 max-w-6xl animate-fade-in">
@@ -73,28 +76,33 @@ export function App() {
             className="h-28 w-auto mx-auto object-contain mb-8 animate-pulse-subtle animate-fade-in-up"
             style={{ animationDuration: '6s' }}
           />
-          <h1 className="font-serif font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#3D2B1F] tracking-tight leading-tight max-w-3xl mx-auto animate-fade-in-up animation-delay-100">
-            Bolos e Doces artesanais sob <br /> encomenda
+          <h1 className="font-serif font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#3D2B1F] tracking-tight leading-none max-w-3xl mx-auto animate-fade-in-up animation-delay-100">
+            Bolos e Doces artesanais sob
           </h1>
-          <p className="font-script text-4xl sm:text-5xl lg:text-6xl text-[#C0707D] mt-2 animate-fade-in-up animation-delay-200">
+          <h1 className="font-serif font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#3D2B1F] tracking-tight leading-none max-w-3xl mx-auto mt-2 animate-fade-in-up animation-delay-150">
+            encomenda
+          </h1>
+          <p className="font-script text-4xl sm:text-5xl lg:text-6xl text-[#C0707D] mt-4 animate-fade-in-up animation-delay-200">
             direto no seu WhatsApp
           </p>
           <p className="text-[#3D2B1F]/70 mt-6 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-sans animate-fade-in-up animation-delay-300">
-            Bentô Cakes divertidos a partir de <strong>R$ 38,00</strong>, Centos de Brigadeiro Gourmet, Bolos com recheios generosos de Ninho com Nutella e Kits Festa completos com entrega rápida.
+            Seja bem-vindo ao nosso cardápio virtual. Todos os nossos produtos são preparados no dia do seu evento com ingredientes selecionados de alta qualidade.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mt-8 items-center animate-fade-in-up animation-delay-400">
             <a
-              href="#bento"
+              href="#menu-secoes"
               className="bg-[#C0707D] hover:bg-[#a65663] text-white py-3.5 px-8 rounded-full font-bold text-sm sm:text-base transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-md"
             >
-              Encomendar Bentô Cake (R$ 38,00)
+              Fazer minha encomenda
             </a>
             <a
-              href="#menu-secoes"
+              href="https://www.instagram.com/karolinatelier/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-white border border-[#3D2B1F]/15 hover:bg-[#FAF6F0] text-[#3D2B1F] py-3.5 px-8 rounded-full font-bold text-sm sm:text-base transition-all hover:scale-105 cursor-pointer shadow-sm"
             >
-              Ver Kits Festa Promocionais
+              Portfólio
             </a>
           </div>
 
@@ -107,7 +115,7 @@ export function App() {
                   key={`c1-${idx}`}
                   src={img}
                   alt={`Inspiração ${idx}`}
-                  className="w-[50vw] sm:w-[33.33vw] md:w-[25vw] h-64 sm:h-80 md:h-[350px] object-cover flex-shrink-0"
+                  className="w-[280px] h-[320px] sm:w-[350px] sm:h-[400px] md:w-[430px] md:h-[480px] object-cover flex-shrink-0"
                 />
               ))}
               {/* Set de Imagens 2 (Duplicado para rolagem infinita) */}
@@ -116,7 +124,7 @@ export function App() {
                   key={`c2-${idx}`}
                   src={img}
                   alt={`Inspiração Duplicada ${idx}`}
-                  className="w-[50vw] sm:w-[33.33vw] md:w-[25vw] h-64 sm:h-80 md:h-[350px] object-cover flex-shrink-0"
+                  className="w-[280px] h-[320px] sm:w-[350px] sm:h-[400px] md:w-[430px] md:h-[480px] object-cover flex-shrink-0"
                 />
               ))}
             </div>
@@ -151,7 +159,7 @@ export function App() {
                 <div className="pt-2">
                   <a
                     href="#bolos"
-                    className="inline-flex bg-[#3D2B1F] hover:bg-[#E18126] text-white font-bold text-xs px-6 py-3 rounded-full transition-colors font-sans cursor-pointer shadow-sm"
+                    className="inline-flex bg-[#3D2B1F] hover:bg-[#C0707D] text-white font-bold text-xs px-6 py-3 rounded-full transition-colors font-sans cursor-pointer shadow-sm"
                   >
                     Ver Bolos Confeitados
                   </a>
@@ -188,7 +196,7 @@ export function App() {
                 <div className="pt-2">
                   <a
                     href="#bento"
-                    className="inline-flex bg-[#3D2B1F] hover:bg-[#E18126] text-white font-bold text-xs px-6 py-3 rounded-full transition-colors font-sans cursor-pointer shadow-sm"
+                    className="inline-flex bg-[#3D2B1F] hover:bg-[#C0707D] text-white font-bold text-xs px-6 py-3 rounded-full transition-colors font-sans cursor-pointer shadow-sm"
                   >
                     Ver Bentô Cakes
                   </a>
@@ -220,7 +228,7 @@ export function App() {
                 <div className="pt-2">
                   <a
                     href="#bento"
-                    className="inline-flex bg-[#3D2B1F] hover:bg-[#E18126] text-white font-bold text-xs px-6 py-3 rounded-full transition-colors font-sans cursor-pointer shadow-sm"
+                    className="inline-flex bg-[#3D2B1F] hover:bg-[#C0707D] text-white font-bold text-xs px-6 py-3 rounded-full transition-colors font-sans cursor-pointer shadow-sm"
                   >
                     Personalizar bentô de amor
                   </a>
