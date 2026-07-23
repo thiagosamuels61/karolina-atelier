@@ -8,7 +8,7 @@ interface VirtualMenuProps {
 
 export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => {
   
-  // Renderiza card de produto unificado em 2 colunas (Layout conforme image copy 21.png)
+  // Renderiza card de produto unificado em 2 colunas (Layout conforme figma/referências)
   const renderProductSection = (product: Product) => {
     const isBento = product.category === 'bento';
     const isBolo = product.category === 'bolos';
@@ -17,19 +17,19 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
     return (
       <div
         key={product.id}
-        className="premium-card flex flex-col md:grid md:grid-cols-2 overflow-hidden w-full bg-white shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#3D2B1F]/10 rounded-[2.5rem]"
+        className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 py-12 border-b border-[#3D2B1F]/10 last:border-b-0 font-sans"
       >
-        {/* Coluna da Imagem (Foto Centralizada) */}
-        <div className="relative h-72 sm:h-96 md:h-full min-h-[350px] bg-[#FAF6F0] overflow-hidden flex items-center justify-center">
+        {/* Coluna da Imagem (Foto com cantos arredondados) */}
+        <div className="w-full h-80 sm:h-[400px] md:h-[450px] overflow-hidden rounded-[2rem] shadow-sm bg-white">
           <img
             src={product.image}
             alt={product.title}
-            className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
+            className="w-full h-full object-cover hover:scale-[1.01] transition-transform duration-500"
           />
         </div>
 
         {/* Coluna de Informações (Informações relevantes ao lado) */}
-        <div className="p-6 sm:p-8 flex flex-col justify-between space-y-6 font-sans">
+        <div className="flex flex-col justify-between py-2 space-y-6">
           <div className="space-y-4">
             
             {/* Tag de Antecedência */}
@@ -38,116 +38,107 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
               <span>{product.minLeadTimeText}</span>
             </div>
 
-            <h3 className="font-serif font-bold text-2xl sm:text-3xl text-[#3D2B1F] leading-tight">
+            <h3 className="font-serif font-bold text-3xl sm:text-4xl text-[#3D2B1F] leading-tight">
               {product.title}
             </h3>
 
-            {/* Bloco de Preço */}
-            <div className="bg-[#FAF6F0] p-4 rounded-2xl border border-[#3D2B1F]/5 w-fit min-w-[200px]">
-              <span className="text-[10px] font-bold text-[#3D2B1F]/50 uppercase tracking-widest block">
-                Valor
-              </span>
-              <span className="text-2xl sm:text-3xl font-serif font-extrabold text-[#E18126] block mt-0.5">
+            {/* Preço em destaque diretamente */}
+            <div className="flex items-baseline gap-2 pt-1">
+              <span className="text-sm font-bold text-[#3D2B1F]/60">A partir de</span>
+              <span className="text-3xl sm:text-4xl font-serif font-extrabold text-[#E18126]">
                 {product.priceText}
               </span>
-              <span className="text-xs text-gray-500 font-bold block mt-1">
+              <span className="text-xs text-gray-500 font-bold">
                 {product.unitText}
               </span>
             </div>
 
-            <p className="text-sm text-[#3D2B1F]/70 leading-relaxed">
+            <p className="text-sm sm:text-base text-[#3D2B1F]/70 leading-relaxed font-medium">
               {product.description}
             </p>
 
             {/* Detalhes Específicos por Categoria */}
             {isBento && (
-              <div className="bg-[#FAF6F0]/50 p-4 rounded-2xl border border-[#3D2B1F]/5 space-y-2">
-                <span className="text-[10px] font-bold text-[#3D2B1F] uppercase tracking-wider block">
-                  Sabores de Recheio:
+              <div className="space-y-3 pt-2">
+                <span className="text-xs font-bold text-[#3D2B1F] uppercase tracking-wider block">
+                  Recheios e Massas:
                 </span>
-                <ul className="text-xs text-[#3D2B1F] grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                  <li className="flex items-center gap-1.5 font-bold">
-                    <Check className="w-3.5 h-3.5 text-[#E18126]" />
+                <ul className="text-xs sm:text-sm text-[#3D2B1F]/80 grid grid-cols-1 sm:grid-cols-2 gap-2 font-medium">
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-[#E18126] flex-shrink-0" />
                     <span>Massa Chocolate ou Baunilha</span>
                   </li>
-                  <li className="flex items-center gap-1.5 font-bold">
-                    <Check className="w-3.5 h-3.5 text-[#E18126]" />
-                    <span>Brigadeiro / Beijinho</span>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-[#E18126] flex-shrink-0" />
+                    <span>Recheio Brigadeiro ou Beijinho</span>
                   </li>
-                  <li className="flex items-center gap-1.5 font-bold">
-                    <Check className="w-3.5 h-3.5 text-[#E18126]" />
-                    <span>Leite Ninho / Castanha</span>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-[#E18126] flex-shrink-0" />
+                    <span>Recheio Ninho ou Doce de Leite</span>
                   </li>
-                  <li className="flex items-center gap-1.5 font-bold text-[#E18126]">
-                    <Check className="w-3.5 h-3.5 text-[#E18126]" />
+                  <li className="flex items-center gap-2 text-[#E18126] font-semibold">
+                    <Check className="w-4 h-4 text-[#E18126] flex-shrink-0" />
                     <span>Ninho c/ Nutella ou Morango (+R$ 5,00)</span>
                   </li>
                 </ul>
+                <p className="text-[11px] text-[#C0707D] font-bold block pt-1 bg-[#C0707D]/5 p-2 rounded-lg border border-[#C0707D]/10 w-fit">
+                  🎁 Acompanha de brinde: 1 vela, 1 colher e laço para presente.
+                </p>
               </div>
             )}
 
             {isBolo && (
-              <div className="space-y-3">
-                <span className="text-[10px] font-bold text-[#3D2B1F] uppercase tracking-wider block">
+              <div className="space-y-3 pt-2">
+                <span className="text-xs font-bold text-[#3D2B1F] uppercase tracking-wider block">
                   Opções de Recheios em Chantininho:
                 </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#3D2B1F]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-[#3D2B1F]/80 font-medium">
                   {product.flavors?.map((flv, idx) => {
                     const isSpecial = flv.includes('+R$');
                     return (
-                      <div
-                        key={idx}
-                        className={`flex items-center gap-2 font-bold bg-white p-2.5 rounded-xl border ${
-                          isSpecial ? 'border-[#E18126]/30 bg-[#E18126]/5' : 'border-[#3D2B1F]/5'
-                        }`}
-                      >
-                        <Check className="w-3.5 h-3.5 text-[#E18126] flex-shrink-0" />
-                        <span className={isSpecial ? 'text-[#E18126]' : ''}>
+                      <div key={idx} className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-[#E18126] flex-shrink-0" />
+                        <span className={isSpecial ? 'text-[#E18126] font-semibold' : ''}>
                           {flv}
                         </span>
                       </div>
                     );
                   })}
                 </div>
-                <div className="pt-2 text-[11px] text-gray-500 font-bold bg-white p-3.5 rounded-2xl border border-[#3D2B1F]/5 space-y-1">
-                  <span className="text-xs text-[#3D2B1F] font-bold block mb-1">Informações Importantes:</span>
+                <div className="pt-2 text-xs text-gray-500 font-medium space-y-1">
                   <p>• Peso mínimo para confecção: 1 kg.</p>
                   <p>• Cobertura com Glitter/Brilho/Aveludado: acréscimo de R$ 10,00 por kg.</p>
-                  <p>• Embalagem protetora especial inclusa no pedido por apenas R$ 8,00.</p>
+                  <p>• Embalagem protetora especial inclusa por apenas R$ 8,00.</p>
                 </div>
               </div>
             )}
 
             {isBrigadeiro && (
-              <div className="space-y-3">
-                <span className="text-[10px] font-bold text-[#3D2B1F] uppercase tracking-wider block">
+              <div className="space-y-3 pt-2">
+                <span className="text-xs font-bold text-[#3D2B1F] uppercase tracking-wider block">
                   Sabores inclusos no cento (Escolha até 3 por cento):
                 </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#3D2B1F]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-[#3D2B1F]/80 font-medium">
                   {product.flavors?.map((flv, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-2 font-bold bg-white p-2.5 rounded-xl border border-[#3D2B1F]/5"
-                    >
-                      <Check className="w-3.5 h-3.5 text-[#E18126] flex-shrink-0" />
+                    <div key={idx} className="flex items-center gap-2">
+                      <Check className="w-4 h-4 text-[#E18126] flex-shrink-0" />
                       <span>{flv}</span>
                     </div>
                   ))}
                 </div>
-                <div className="pt-2 text-[11px] text-gray-500 font-bold bg-white p-3.5 rounded-2xl border border-[#3D2B1F]/5 space-y-1">
-                  <span className="text-xs text-[#3D2B1F] font-bold block mb-1">Informações de Forminhas:</span>
-                  <p>• Forminhas inclusas no cento (cor a combinar via WhatsApp).</p>
-                  <p>• Ideal para festas infantis, casamentos e reuniões.</p>
+                <div className="pt-2 text-xs text-gray-500 font-medium space-y-1">
+                  <p>• Forminhas decorativas inclusas (cores combinadas após o pedido).</p>
+                  <p>• Perfeitos para comemorações e eventos corporativos.</p>
                 </div>
               </div>
             )}
 
           </div>
 
-          <div>
+          <div className="pt-2">
             <button
               onClick={() => onSelectProduct(product)}
-              className="w-full premium-button-primary py-4 px-6 text-sm sm:text-base flex items-center justify-center gap-2 shadow-md cursor-pointer transition-all hover:scale-105"
+              className="w-full md:w-auto bg-[#C0707D] hover:bg-[#a65663] text-white py-4 px-8 rounded-full font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-md cursor-pointer transition-all hover:scale-105 active:scale-95"
             >
               <ShoppingBag className="w-5 h-5" />
               <span>Personalizar e Encomendar</span>

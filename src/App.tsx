@@ -66,42 +66,48 @@ export function App() {
       <main className="flex-1 pb-16">
         
         {/* Seção Hero */}
-        <section className="bg-white py-16 border-b border-[#3D2B1F]/10 text-center mx-auto px-4 my-8 rounded-[2.5rem] shadow-sm animate-scale-in max-w-6xl overflow-hidden">
+        <section className="py-12 sm:py-20 text-center mx-auto px-4 max-w-6xl animate-fade-in">
           <img
             src={logoImg}
             alt="Logo Karolina Atelier"
             className="h-28 w-auto mx-auto object-contain mb-8 animate-pulse-subtle animate-fade-in-up"
             style={{ animationDuration: '6s' }}
           />
-          <h1 className="font-serif font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#3D2B1F] tracking-tight leading-tight animate-fade-in-up animation-delay-100">
-            Seu Pedido <span className="font-script text-5xl sm:text-6xl text-[#E18126] inline-block ml-1">direto no seu WhatsApp</span>
+          <h1 className="font-serif font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#3D2B1F] tracking-tight leading-tight max-w-3xl mx-auto animate-fade-in-up animation-delay-100">
+            Bolos e Doces artesanais sob <br /> encomenda
           </h1>
-          <p className="text-[#3D2B1F]/60 mt-4 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed animate-fade-in-up animation-delay-200">
-            Seja bem-vindo ao nosso cardápio virtual. Todos os nossos produtos são preparados no dia do seu evento com ingredientes selecionados de alta qualidade.
+          <p className="font-script text-4xl sm:text-5xl lg:text-6xl text-[#C0707D] mt-2 animate-fade-in-up animation-delay-200">
+            direto no seu WhatsApp
+          </p>
+          <p className="text-[#3D2B1F]/70 mt-6 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-sans animate-fade-in-up animation-delay-300">
+            Bentô Cakes divertidos a partir de <strong>R$ 38,00</strong>, Centos de Brigadeiro Gourmet, Bolos com recheios generosos de Ninho com Nutella e Kits Festa completos com entrega rápida.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4 mt-8 items-center animate-fade-in-up animation-delay-300">
+          <div className="flex flex-wrap justify-center gap-4 mt-8 items-center animate-fade-in-up animation-delay-400">
+            <a
+              href="#bento"
+              className="bg-[#C0707D] hover:bg-[#a65663] text-white py-3.5 px-8 rounded-full font-bold text-sm sm:text-base transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-md"
+            >
+              Encomendar Bentô Cake (R$ 38,00)
+            </a>
             <a
               href="#menu-secoes"
-              className="premium-button-primary py-3.5 px-8 text-sm sm:text-base flex items-center justify-center gap-2 shadow-md cursor-pointer transition-all hover:scale-105 active:scale-95"
+              className="bg-white border border-[#3D2B1F]/15 hover:bg-[#FAF6F0] text-[#3D2B1F] py-3.5 px-8 rounded-full font-bold text-sm sm:text-base transition-all hover:scale-105 cursor-pointer shadow-sm"
             >
-              Fazer encomenda
+              Ver Kits Festa Promocionais
             </a>
-            <span className="bg-[#FAF6F0] px-5 py-3.5 rounded-full border border-[#3D2B1F]/10 text-xs sm:text-sm font-bold text-[#3D2B1F]/80">
-              Retirada ou Entrega em Ceilândia - DF
-            </span>
           </div>
 
           {/* Carrossel de Produtos Infinito */}
-          <div className="w-full overflow-hidden py-4 mt-12 border-t border-[#3D2B1F]/5">
-            <div className="animate-scroll flex gap-6">
+          <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden py-0 mt-16 border-t border-b border-[#3D2B1F]/10 bg-white">
+            <div className="animate-scroll-right flex">
               {/* Set de Imagens 1 */}
               {carouselImages.map((img, idx) => (
                 <img
                   key={`c1-${idx}`}
                   src={img}
                   alt={`Inspiração ${idx}`}
-                  className="w-36 h-36 sm:w-48 sm:h-48 object-cover rounded-2xl border border-[#3D2B1F]/10 shadow-sm flex-shrink-0"
+                  className="w-[50vw] sm:w-[33.33vw] md:w-[25vw] h-64 sm:h-80 md:h-[350px] object-cover flex-shrink-0"
                 />
               ))}
               {/* Set de Imagens 2 (Duplicado para rolagem infinita) */}
@@ -110,7 +116,7 @@ export function App() {
                   key={`c2-${idx}`}
                   src={img}
                   alt={`Inspiração Duplicada ${idx}`}
-                  className="w-36 h-36 sm:w-48 sm:h-48 object-cover rounded-2xl border border-[#3D2B1F]/10 shadow-sm flex-shrink-0"
+                  className="w-[50vw] sm:w-[33.33vw] md:w-[25vw] h-64 sm:h-80 md:h-[350px] object-cover flex-shrink-0"
                 />
               ))}
             </div>
