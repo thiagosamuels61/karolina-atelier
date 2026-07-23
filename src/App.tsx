@@ -6,9 +6,26 @@ import { OrderModal } from './components/OrderModal';
 import { Footer } from './components/Footer';
 import type { Product } from './data/products';
 import { generateQuickContactLink } from './utils/whatsapp';
-import { logoImg } from './data/products';
+import {
+  logoImg,
+  bentoHighlight,
+  bentoCelebre,
+  bentoFunny1,
+  bentoLoving,
+  boloCelebre1,
+  boloCelebre2
+} from './data/products';
 import { trackEvent } from './utils/pixel';
 import whatsappIcon from '@images/image copy 4.png';
+
+const carouselImages = [
+  bentoHighlight,
+  bentoCelebre,
+  bentoFunny1,
+  bentoLoving,
+  boloCelebre1,
+  boloCelebre2
+];
 
 export function App() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -48,8 +65,8 @@ export function App() {
       {/* Seção Principal */}
       <main className="flex-1 pb-16">
         
-        {/* Seção Hero (Conforme flyer image copy 10.png, sem emojis/tracinhos) */}
-        <section className="bg-white py-16 border-b border-[#3D2B1F]/10 text-center max-w-4xl mx-auto px-4 my-8 rounded-[2.5rem] shadow-sm animate-scale-in">
+        {/* Seção Hero */}
+        <section className="bg-white py-16 border-b border-[#3D2B1F]/10 text-center mx-auto px-4 my-8 rounded-[2.5rem] shadow-sm animate-scale-in max-w-6xl overflow-hidden">
           <img
             src={logoImg}
             alt="Logo Karolina Atelier"
@@ -57,24 +74,163 @@ export function App() {
             style={{ animationDuration: '6s' }}
           />
           <h1 className="font-serif font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#3D2B1F] tracking-tight leading-tight animate-fade-in-up animation-delay-100">
-            Bolos e Doces <span className="text-[#E18126]">Artesanais</span> sob Encomenda
+            Seu Pedido <span className="font-script text-5xl sm:text-6xl text-[#E18126] inline-block ml-1">direto no seu WhatsApp</span>
           </h1>
           <p className="text-[#3D2B1F]/60 mt-4 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed animate-fade-in-up animation-delay-200">
             Seja bem-vindo ao nosso cardápio virtual. Todos os nossos produtos são preparados no dia do seu evento com ingredientes selecionados de alta qualidade.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-3 mt-8 text-xs font-bold text-[#3D2B1F]/80 animate-fade-in-up animation-delay-300">
-            <span className="bg-[#FAF6F0] px-4 py-2 rounded-full border border-[#3D2B1F]/10">
+          <div className="flex flex-wrap justify-center gap-4 mt-8 items-center animate-fade-in-up animation-delay-300">
+            <a
+              href="#menu-secoes"
+              className="premium-button-primary py-3.5 px-8 text-sm sm:text-base flex items-center justify-center gap-2 shadow-md cursor-pointer transition-all hover:scale-105 active:scale-95"
+            >
+              Fazer encomenda
+            </a>
+            <span className="bg-[#FAF6F0] px-5 py-3.5 rounded-full border border-[#3D2B1F]/10 text-xs sm:text-sm font-bold text-[#3D2B1F]/80">
               Retirada ou Entrega em Ceilândia - DF
             </span>
-            <span className="bg-[#FAF6F0] px-4 py-2 rounded-full border border-[#3D2B1F]/10">
-              Pix, Crédito ou Débito
-            </span>
+          </div>
+
+          {/* Carrossel de Produtos Infinito */}
+          <div className="w-full overflow-hidden py-4 mt-12 border-t border-[#3D2B1F]/5">
+            <div className="animate-scroll flex gap-6">
+              {/* Set de Imagens 1 */}
+              {carouselImages.map((img, idx) => (
+                <img
+                  key={`c1-${idx}`}
+                  src={img}
+                  alt={`Inspiração ${idx}`}
+                  className="w-36 h-36 sm:w-48 sm:h-48 object-cover rounded-2xl border border-[#3D2B1F]/10 shadow-sm flex-shrink-0"
+                />
+              ))}
+              {/* Set de Imagens 2 (Duplicado para rolagem infinita) */}
+              {carouselImages.map((img, idx) => (
+                <img
+                  key={`c2-${idx}`}
+                  src={img}
+                  alt={`Inspiração Duplicada ${idx}`}
+                  className="w-36 h-36 sm:w-48 sm:h-48 object-cover rounded-2xl border border-[#3D2B1F]/10 shadow-sm flex-shrink-0"
+                />
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Cardápio Virtual */}
         <VirtualMenu onSelectProduct={handleOpenModal} />
+
+        {/* Seções Temáticas (Frases e Inspirações) */}
+        <section className="py-16 sm:py-24 bg-white border-t border-b border-[#3D2B1F]/10 font-sans">
+          <div className="max-w-6xl mx-auto px-4 space-y-16">
+            
+            <div className="text-center space-y-3">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#3D2B1F] tracking-tight">
+                Inspirações para Celebrar e Presentear
+              </h2>
+              <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+                Nossos bolos e bentôs fazem parte dos momentos mais importantes e divertidos da sua vida.
+              </p>
+            </div>
+
+            {/* Tema 1: Celebre com quem você ama */}
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 bg-[#FAF6F0]/40 p-6 sm:p-10 rounded-[2.5rem] border border-[#3D2B1F]/5">
+              <div className="flex-1 space-y-4">
+                <h3 className="font-serif font-bold text-2xl sm:text-3xl text-[#3D2B1F]">
+                  Celebre com quem você ama
+                </h3>
+                <p className="text-sm text-[#3D2B1F]/70 leading-relaxed font-sans">
+                  Do chá revelação ao aniversário dos seus sonhos, nossos bolos confeitados e bentô cakes são pensados para encantar seus convidados e eternizar momentos especiais. Compartilhe afeto e sabor com quem você mais ama!
+                </p>
+                <div className="pt-2">
+                  <a
+                    href="#bolos"
+                    className="inline-flex bg-[#3D2B1F] hover:bg-[#E18126] text-white font-bold text-xs px-6 py-3 rounded-full transition-colors font-sans cursor-pointer shadow-sm"
+                  >
+                    Ver Bolos Confeitados
+                  </a>
+                </div>
+              </div>
+              <div className="flex-1 w-full grid grid-cols-3 gap-2">
+                <img
+                  src={bentoCelebre}
+                  alt="Chá Revelação Bentô"
+                  className="w-full h-32 sm:h-44 object-cover rounded-2xl border border-[#3D2B1F]/10 shadow-sm"
+                />
+                <img
+                  src={boloCelebre1}
+                  alt="Chá Revelação Bolo"
+                  className="w-full h-32 sm:h-44 object-cover rounded-2xl border border-[#3D2B1F]/10 shadow-sm"
+                />
+                <img
+                  src={boloCelebre2}
+                  alt="Chá Revelação Bolo Detalhe"
+                  className="w-full h-32 sm:h-44 object-cover rounded-2xl border border-[#3D2B1F]/10 shadow-sm"
+                />
+              </div>
+            </div>
+
+            {/* Tema 2: Presenteie de forma engraçada */}
+            <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12 bg-[#FAF6F0]/40 p-6 sm:p-10 rounded-[2.5rem] border border-[#3D2B1F]/5">
+              <div className="flex-1 space-y-4">
+                <h3 className="font-serif font-bold text-2xl sm:text-3xl text-[#3D2B1F]">
+                  Presenteie de forma engraçada
+                </h3>
+                <p className="text-sm text-[#3D2B1F]/70 leading-relaxed font-sans">
+                  Quer arrancar risadas de um amigo ou familiar no aniversário? Nossos Bentô Cakes divertidos vêm com ilustrações do personagem Flork e frases engraçadas personalizadas por você. O presente perfeito e mais criativo!
+                </p>
+                <div className="pt-2">
+                  <a
+                    href="#bento"
+                    className="inline-flex bg-[#3D2B1F] hover:bg-[#E18126] text-white font-bold text-xs px-6 py-3 rounded-full transition-colors font-sans cursor-pointer shadow-sm"
+                  >
+                    Ver Bentô Cakes
+                  </a>
+                </div>
+              </div>
+              <div className="flex-1 w-full grid grid-cols-2 gap-3">
+                <img
+                  src={bentoFunny1}
+                  alt="Bentô Cake Engraçado"
+                  className="w-full h-40 sm:h-52 object-cover rounded-2xl border border-[#3D2B1F]/10 shadow-sm"
+                />
+                <img
+                  src={bentoHighlight}
+                  alt="Bentô Cake Flork Divertido"
+                  className="w-full h-40 sm:h-52 object-cover rounded-2xl border border-[#3D2B1F]/10 shadow-sm"
+                />
+              </div>
+            </div>
+
+            {/* Tema 3: Presenteie de forma amorosa */}
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 bg-[#FAF6F0]/40 p-6 sm:p-10 rounded-[2.5rem] border border-[#3D2B1F]/5">
+              <div className="flex-1 space-y-4">
+                <h3 className="font-serif font-bold text-2xl sm:text-3xl text-[#3D2B1F]">
+                  Presenteie de forma amorosa
+                </h3>
+                <p className="text-sm text-[#3D2B1F]/70 leading-relaxed font-sans">
+                  Demonstre todo o seu carinho com decorações românticas e delicadas. Personalize o Bentô com corações, flores e frases carinhosas feitas sob medida para surpreender quem você ama em datas românticas, casamentos ou comemorações.
+                </p>
+                <div className="pt-2">
+                  <a
+                    href="#bento"
+                    className="inline-flex bg-[#3D2B1F] hover:bg-[#E18126] text-white font-bold text-xs px-6 py-3 rounded-full transition-colors font-sans cursor-pointer shadow-sm"
+                  >
+                    Personalizar bentô de amor
+                  </a>
+                </div>
+              </div>
+              <div className="flex-1 w-full max-w-md">
+                <img
+                  src={bentoLoving}
+                  alt="Bentô Romântico"
+                  className="w-full h-64 object-cover rounded-2xl border border-[#3D2B1F]/10 shadow-sm mx-auto"
+                />
+              </div>
+            </div>
+
+          </div>
+        </section>
 
         {/* Galeria de Fotos Reais */}
         <PhotoGallery />

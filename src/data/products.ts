@@ -3,19 +3,18 @@ import logoImg from '@logo/logo transparente.png';
 import logoWhiteBg from '@logo/logo fundo branco.png';
 
 // Fotos Bentô Cakes
-import bentoImg1 from '@bento/Captura de tela 2026-07-21 134358.png';
-import bentoImg2 from '@bento/Captura de tela 2026-07-21 134402.png';
-import bentoImg3 from '@bento/Captura de tela 2026-07-21 134406.png';
-import bentoImg4 from '@bento/Captura de tela 2026-07-21 134411.png';
-import bentoImg5 from '@bento/Captura de tela 2026-07-21 134416.png';
-import bentoImg6 from '@bento/Captura de tela 2026-07-21 134421.png';
+import bentoImg1 from '@bento/Captura_de_tela_2026-07-21_134416.png_202607230715.jpeg';
+import bentoImg2 from '@bento/Captura_de_tela_2026-07-21_134421.png_202607230715.jpeg';
+import bentoImg3 from '@bento/Captura_de_tela_2026-07-21_134442.png_202607230715.jpeg';
+import bentoImg4 from '@bento/Captura_de_tela_2026-07-21_134447.png_202607230715.jpeg';
+// bentoImg5 e bentoImg6 removidos
 
 // Imagens extras de Bento Cakes para Galeria
-import bentoGal1 from '@bento/Captura de tela 2026-07-21 134425.png';
-import bentoGal2 from '@bento/Captura de tela 2026-07-21 134431.png';
-import bentoGal3 from '@bento/Captura de tela 2026-07-21 134442.png';
-import bentoGal4 from '@bento/Captura de tela 2026-07-21 134447.png';
-import bentoGal5 from '@bento/Captura de tela 2026-07-21 134451.png';
+import bentoGal1 from '@bento/Captura_de_tela_2026-07-21_134538.png_202607230715.jpeg';
+import bentoGal2 from '@bento/Captura_de_tela_2026-07-21_134551.png_202607230715.jpeg';
+import bentoGal3 from '@bento/Captura_de_tela_2026-07-21_134555.png_202607230715.jpeg';
+import bentoGal4 from '@bento/Captura_de_tela_2026-07-21_134620.png_202607230715.jpeg';
+import bentoGal5 from '@bento/Captura_de_tela_2026-07-21_134644.png_202607230715.jpeg';
 
 // Fotos Bolos Confeitados (as 5 selecionadas pelo usuário)
 import boloImg1 from '@bolos/Captura de tela 2026-07-21 140552.png';
@@ -31,9 +30,7 @@ import boloGal3 from '@bolos/Captura de tela 2026-07-21 140431.png';
 import boloGal4 from '@bolos/Captura de tela 2026-07-21 140437.png';
 import boloGal5 from '@bolos/Captura de tela 2026-07-21 140440.png';
 
-// Fotos Kit Festa
-import kitImg1 from '@kits/Captura de tela 2026-07-21 140552.png';
-import kitImg2 from '@kits/Captura de tela 2026-07-21 140600.png';
+// kitImg1 e kitImg2 removidos
 
 // Fotos Brigadeiros Gourmet
 import brigImg1 from '@brigadeiros/Captura de tela 2026-07-21 141434.png';
@@ -51,7 +48,26 @@ import brigGal5 from '@brigadeiros/Captura de tela 2026-07-21 141540.png';
 // Imagem 9.jpg (Layout do site que o usuário quer que seja usado de referência)
 import layoutRefImg from '@images/image 9.jpg';
 
-export { logoImg, logoWhiteBg, layoutRefImg };
+// Imagens extras para as frases temáticas e destaques
+import bentoHighlight from '@bento/Captura_de_tela_2026-07-23_071056.png_202607230715.jpeg';
+import bentoCelebre from '@bento/Captura_de_tela_2026-07-23_070538.png_202607230715.jpeg';
+import bentoFunny1 from '@bento/Captura_de_tela_2026-07-23_071151.png_202607230715.jpeg';
+import bentoLoving from '@bento/Captura_de_tela_2026-07-23_071042.png_202607230715.jpeg';
+
+import boloCelebre1 from '@bolos/Captura de tela 2026-07-21 140447.png';
+import boloCelebre2 from '@bolos/Captura de tela 2026-07-21 140451.png';
+
+export {
+  logoImg,
+  logoWhiteBg,
+  layoutRefImg,
+  bentoHighlight,
+  bentoCelebre,
+  bentoFunny1,
+  bentoLoving,
+  boloCelebre1,
+  boloCelebre2
+};
 
 export interface ProductOption {
   label: string;
@@ -139,42 +155,11 @@ export const BENTO_CAKES_LIST: Product[] = [
     description: 'Mini bolo na marmita de 10cm com cobertura em buttercream e decoração simples de até três cores com o personagem Flork e a sua frase personalizada. Acompanha lancheira biodegradável.',
     minLeadTimeDays: 2,
     minLeadTimeText: 'Encomenda com 2 dias de antecedência',
-    image: bentoImg1,
-    gallery: [bentoImg1, bentoImg2, bentoImg3, bentoImg4],
-    badge: 'Mais Vendido em Ceilândia',
+    image: bentoHighlight,
+    gallery: [bentoHighlight, bentoImg1, bentoImg2, bentoImg3, bentoImg4],
     isPopular: true,
     hasCustomPhrase: true,
     maxPhraseLength: 35,
-    flavors: [
-      'Massa Baunilha + Recheio Brigadeiro',
-      'Massa Baunilha + Recheio Beijinho',
-      'Massa Baunilha + Recheio Leite Ninho',
-      'Massa Baunilha + Recheio Brigadeiro com Castanha',
-      'Massa Chocolate + Recheio Brigadeiro',
-      'Massa Chocolate + Recheio Beijinho',
-      'Massa Chocolate + Recheio Leite Ninho',
-      'Massa Chocolate + Recheio Brigadeiro com Castanha',
-      'Massa Baunilha + Recheio Especial Ninho com Nutella (+R$ 5,00)',
-      'Massa Baunilha + Recheio Especial Ninho com Geleia de Morango (+R$ 5,00)',
-      'Massa Chocolate + Recheio Especial Ninho com Nutella (+R$ 5,00)',
-      'Massa Chocolate + Recheio Especial Ninho com Geleia de Morango (+R$ 5,00)',
-    ],
-  },
-  {
-    id: 'bento-duplo-especial',
-    title: 'Bentô Cake Duplo (Edição Compartilhar)',
-    category: 'bento',
-    price: 85.00,
-    priceText: 'R$ 85,00',
-    unitText: 'unidade (~600g - serve de 3 a 4 pessoas)',
-    description: 'Versão ampliada do Bentô Cake tradicional, com mais recheio e espaço ideal para decorações especiais ou frases mais longas. Cobertura em buttercream.',
-    minLeadTimeDays: 2,
-    minLeadTimeText: 'Encomenda com 2 dias de antecedência',
-    image: bentoImg5,
-    gallery: [bentoImg5, bentoImg6],
-    badge: 'Para Compartilhar',
-    hasCustomPhrase: true,
-    maxPhraseLength: 45,
     flavors: [
       'Massa Baunilha + Recheio Brigadeiro',
       'Massa Baunilha + Recheio Beijinho',
@@ -198,14 +183,13 @@ export const BOLOS_CONFEITADOS_LIST: Product[] = [
     title: 'Bolos Festivos & Confeitados',
     category: 'bolos',
     price: 85.00, // Preço por kg
-    priceText: 'R$ 85,00 / kg',
-    unitText: 'a partir de 1.5kg (+ R$ 8,00 embalagem)',
-    description: 'Bolos festivos com cobertura premium em Chantininho e decorações artesanais sofisticadas. Massa umedecida e fofinha com camadas caprichadas de recheio.',
+    priceText: 'A partir de R$ 85,00 / kg',
+    unitText: 'escolha de 1 a 4kg (+ R$ 8,00 embalagem)',
+    description: 'Bolos festivos com cobertura premium em Chantininho e decorações artesanais sofisticadas. Massa umedecida e fofinha com camadas caprichadas de recheio. Obs: Sabores especiais possuem acréscimo de R$ 10,00/kg.',
     minLeadTimeDays: 3,
     minLeadTimeText: 'Encomenda com 3 dias de antecedência',
-    image: boloImg1,
-    gallery: [boloImg1, boloImg2, boloImg3, boloImg4, boloImg5],
-    badge: 'Destaque do Atelier',
+    image: boloImg3,
+    gallery: [boloImg3, boloImg1, boloImg2, boloImg4, boloImg5],
     isPopular: true,
     flavors: [
       'Brigadeiro ao Leite',
@@ -215,16 +199,18 @@ export const BOLOS_CONFEITADOS_LIST: Product[] = [
       'Prestígio (brigadeiro e beijinho)',
       '4 leites com Abacaxi',
       'Leite Ninho com Abacaxi',
-      'Leite Ninho com Geleia de Morango',
+      'Leite Ninho com Geleia de Morango (+R$ 10,00 / kg)',
       'Doce de leite suave com Ameixa',
       'Leite Ninho com Oreo',
       'Coco (beijinho) com Abacaxi',
+      'Leite Ninho com Nutella (+R$ 10,00 / kg)',
+      'Doce de Leite com Nozes (+R$ 10,00 / kg)'
     ],
     sizes: [
-      { label: '1.5 kg (serve 12 a 15 pessoas)', priceModifier: 0 },
-      { label: '2.0 kg (serve 18 a 20 pessoas)', priceModifier: 42.50 }, // +0.5kg
-      { label: '2.5 kg (serve 22 a 25 pessoas)', priceModifier: 85.00 }, // +1kg
-      { label: '3.0 kg (serve 28 a 30 pessoas)', priceModifier: 127.50 }, // +1.5kg
+      { label: '1 kg (serve até 10 pessoas)', priceModifier: 0 },
+      { label: '2 kg (serve até 20 pessoas)', priceModifier: 85.00 },
+      { label: '3 kg (serve até 30 pessoas)', priceModifier: 170.00 },
+      { label: '4 kg (serve até 40 pessoas)', priceModifier: 255.00 },
     ],
   },
 ];
@@ -232,88 +218,33 @@ export const BOLOS_CONFEITADOS_LIST: Product[] = [
 export const BRIGADEIROS_LIST: Product[] = [
   {
     id: 'cento-brigadeiro-gourmet',
-    title: 'Cento de Brigadeiros Gourmet (100 unidades)',
+    title: 'Brigadeiros Gourmet Artesanais',
     category: 'brigadeiros',
     price: 180.00,
-    priceText: 'R$ 180,00',
-    unitText: 'cento completo',
+    priceText: 'A partir de R$ 90,00',
+    unitText: 'Escolha a quantidade desejada',
     description: 'Docinhos finos enrolados individualmente com confeitos selecionados e chocolate nobre. Escolha até 3 sabores por cento. Favor nos enviar a cor desejada das forminhas no WhatsApp.',
     minLeadTimeDays: 3,
     minLeadTimeText: 'Encomenda com 3 dias de antecedência',
     image: brigImg1,
     gallery: [brigImg1, brigImg2, brigImg3, brigImg4],
-    badge: 'Chocolate Nobre',
     isPopular: true,
     flavors: [
-      'Brigadeiro ao Leite',
-      'Beijinho (Coco)',
-      'Casadinho',
-      'Leite Ninho com Nutella',
-      'Brigadeiro com Castanha e Nutella',
-      'Mix Especial (Escolha até 3 sabores)',
+      'Brigadeiro Gourmet Ao Leite',
+      'Brigadeiro de Ninho',
+      'Beijinho de Coco',
+      'Brigadeiro de Churros',
+      'Casadinho (Dois Amores)',
+      'Bicho de Pé (Moranguinho)',
     ],
     sizes: [
-      { label: 'Cento Completo (100 unidades)', priceModifier: 0 },
       { label: 'Meio Cento (50 unidades)', priceModifier: -90.00 },
+      { label: 'Cento Completo (100 unidades)', priceModifier: 0 },
     ],
   },
 ];
 
-export const KITS_FESTA_LIST: Product[] = [
-  {
-    id: 'kit-festa-petit',
-    title: 'Kit Festa Petit',
-    category: 'kits',
-    price: 139.00,
-    priceText: 'R$ 139,00',
-    unitText: 'combo ideal para 5 a 8 pessoas',
-    description: 'Perfeito para pequenas comemorações e aniversários em família! Acompanha 1 Bentô Cake (ou Bolo 1kg) + 50 Brigadeiros Gourmet + 1 Pct Pipoca Gourmet (150g).',
-    minLeadTimeDays: 3,
-    minLeadTimeText: 'Encomenda com 3 dias de antecedência',
-    image: kitImg1,
-    badge: 'Campeão de Vendas',
-    isPopular: true,
-    flavors: [
-      'Bolo Ninho com Nutella + 50 Brigadeiros Sortidos',
-      'Bolo Brigadeiro Belga + 50 Brigadeiros Sortidos',
-    ],
-  },
-  {
-    id: 'kit-festa-vip',
-    title: 'Kit Festa VIP',
-    category: 'kits',
-    price: 229.00,
-    priceText: 'R$ 229,00',
-    unitText: 'combo ideal para 10 a 15 pessoas',
-    description: 'O combo preferido para festas em casa e escritório! Acompanha Bolo Confeitado 1.5kg + 100 Brigadeiros Gourmet Sortidos + 2 Pcts Pipoca Gourmet + 6 Dindins Gourmet.',
-    minLeadTimeDays: 3,
-    minLeadTimeText: 'Encomenda com 3 dias de antecedência',
-    image: kitImg2,
-    badge: 'Melhor Custo-Benefício',
-    isPopular: true,
-    flavors: [
-      'Bolo Doce de Leite c/ Nozes 1.5kg + 100 Brigadeiros',
-      'Bolo Ninho c/ Morango 1.5kg + 100 Brigadeiros',
-    ],
-  },
-  {
-    id: 'kit-festa-celebracao',
-    title: 'Kit Festa Celebração',
-    category: 'kits',
-    price: 349.00,
-    priceText: 'R$ 349,00',
-    unitText: 'combo ideal para 20 a 25 pessoas',
-    description: 'A estrutura completa para a sua festa sem preocupações! Bolo artesanal 2.5kg + 150 Brigadeiros Gourmet Finos + 3 Pcts Pipoca Gourmet Grande + 10 Dindins Gourmet.',
-    minLeadTimeDays: 3,
-    minLeadTimeText: 'Encomenda com 3 dias de antecedência',
-    image: layoutRefImg, // Usa layoutRefImg ou kitImg2
-    badge: 'Combo Família',
-    isPopular: false,
-    flavors: [
-      'Bolo Especial de Andar (2.5kg) + 150 Brigadeiros Gourmet',
-    ],
-  },
-];
+export const KITS_FESTA_LIST: Product[] = [];
 
 // Estrutura agrupada para Galeria de Inspiração
 export interface GalleryImage {

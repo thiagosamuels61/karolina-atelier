@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { X, MessageCircle, Calendar, Sparkles, User, Percent, Info } from 'lucide-react';
-import { type Product, type UpsellOption, BENTO_SUGGESTED_PHRASES, UPSELL_OPTIONS } from '../data/products';
+import { X, MessageCircle, Calendar, Sparkles, User, Info } from 'lucide-react';
+import { type Product, BENTO_SUGGESTED_PHRASES } from '../data/products';
 import { generateWhatsAppLink, LOCATION_TEXT } from '../utils/whatsapp';
 import confetti from 'canvas-confetti';
 import { trackEvent } from '../utils/pixel';
@@ -26,7 +26,10 @@ export const OrderModal: React.FC<OrderModalProps> = ({
   const [eventDate, setEventDate] = useState('');
   const [customerName, setCustomerName] = useState('');
   const [additionalNotes, setAdditionalNotes] = useState('');
-  const [selectedUpsells, setSelectedUpsells] = useState<string[]>([]);
+  
+  // Combos Dinâmicos
+  const [comboBrigadeiros, setComboBrigadeiros] = useState<string>('none');
+  const [comboBentoCakes, setComboBentoCakes] = useState<number>(0);
   const [dateError, setDateError] = useState('');
 
   // Bento Cakes Adicionais (conforme flyer)
@@ -83,7 +86,8 @@ export const OrderModal: React.FC<OrderModalProps> = ({
       setSelectedSize(product.sizes?.[0]?.label || '');
       setEventDate('');
       setAdditionalNotes('');
-      setSelectedUpsells([]);
+      setComboBrigadeiros('none');
+      setComboBentoCakes(0);
       setDateError('');
       setBentoLaco(false);
       setBentoColher(false);
@@ -97,6 +101,14 @@ export const OrderModal: React.FC<OrderModalProps> = ({
       }
     }
   }, [product, initialPhrase]);
+
+  // Calcula peso do bolo em kg
+  let boloWeight = 1;
+  if (selectedSize.includes('2 kg')) boloWeight = 2;
+  else if (selectedSize.includes('3 kg')) boloWeight = 3;
+  else if (selectedSize.includes('4 kg')) boloWeight = 4;
+
+  const isSpecialBoloFlavor = selectedFlavor.includes('+R$ 10,00');
 
   // Calcula preço base do produto e tamanho
   let basePrice = product.price;
@@ -124,36 +136,26 @@ export const OrderModal: React.FC<OrderModalProps> = ({
   // Adicionais do Bolo Confeitado
   let boloExtras = 0;
   if (product.category === 'bolos') {
-    const weightMultiplier = parseFloat(selectedSize) || 1.5;
     if (boloGlitter) {
-      boloExtras += 10.00 * weightMultiplier; // R$ 10,00 por kg
+      boloExtras += 10.00 * boloWeight; // R$ 10,00 por kg
+    }
+    if (isSpecialBoloFlavor) {
+      boloExtras += 10.00 * boloWeight; // R$ 10,00 por kg para sabor especial
     }
   }
 
-  // Calcula combos adicionados (upsell)
-  let upsellTotal = 0;
-  let totalSavings = 0;
-  const activeUpsellsList: UpsellOption[] = [];
+  // Adicionais de Combo Dinâmico
+  let brigadeirosCost = 0;
+  if (comboBrigadeiros === 'meio') brigadeirosCost = 90.00;
+  else if (comboBrigadeiros === '1cento') brigadeirosCost = 180.00;
+  else if (comboBrigadeiros === '2centos') brigadeirosCost = 360.00;
+  else if (comboBrigadeiros === '3centos') brigadeirosCost = 540.00;
+  else if (comboBrigadeiros === '4centos') brigadeirosCost = 720.00;
 
-  selectedUpsells.forEach((id) => {
-    const option = UPSELL_OPTIONS.find((o) => o.id === id);
-    if (option) {
-      upsellTotal += option.discountPrice;
-      totalSavings += (option.originalPrice - option.discountPrice);
-      activeUpsellsList.push(option);
-    }
-  });
+  let bentoCakesCost = comboBentoCakes * 60.00;
 
-  const finalTotal = basePrice + packagingCost + bentoExtras + boloExtras + upsellTotal;
+  const finalTotal = basePrice + packagingCost + bentoExtras + boloExtras + brigadeirosCost + bentoCakesCost;
   const formattedCalculatedPrice = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
-
-  const toggleUpsell = (id: string) => {
-    if (selectedUpsells.includes(id)) {
-      setSelectedUpsells(selectedUpsells.filter((item) => item !== id));
-    } else {
-      setSelectedUpsells([...selectedUpsells, id]);
-    }
-  };
 
   const handleSubmitOrder = (e: React.FormEvent) => {
     e.preventDefault();
@@ -181,12 +183,9 @@ export const OrderModal: React.FC<OrderModalProps> = ({
       currency: 'BRL',
       flavor: selectedFlavor,
       size: selectedSize || 'Único',
-      upsells: selectedUpsells,
+      comboBrigadeiros,
+      comboBentoCakes,
     });
-
-    const upsellsText = activeUpsellsList.length > 0
-      ? activeUpsellsList.map((o) => `+ ${o.title} (Promoção)`).join('\n')
-      : undefined;
 
     // Compilação dos detalhes adicionais no texto para ir direto ao ponto
     let combinedNotes = additionalNotes || '';
@@ -206,6 +205,9 @@ export const OrderModal: React.FC<OrderModalProps> = ({
       const extras: string[] = [];
       if (boloGlitter) extras.push('Cobertura Aveludada/Glitter (+R$ 10,00 por kg)');
       if (boloCoracao) extras.push('Desejo formato Coração / Vintage (a consultar)');
+      if (isSpecialBoloFlavor) {
+        extras.push('Sabor Especial Nobre (+R$ 10,00 por kg)');
+      }
       if (extras.length > 0) {
         combinedNotes += `\nAdicionais de Bolo: ${extras.join(', ')}`;
       }
@@ -220,8 +222,23 @@ export const OrderModal: React.FC<OrderModalProps> = ({
       }
     }
 
-    if (upsellsText) {
-      combinedNotes += `\n\nAdicionais do Combo:\n${upsellsText}`;
+    // Combos dinâmicos extras na mensagem do WhatsApp
+    const combosAdicionados: string[] = [];
+    if (comboBrigadeiros !== 'none') {
+      let textoBrig = '';
+      if (comboBrigadeiros === 'meio') textoBrig = 'Meio Cento (50 un) de Brigadeiros Gourmet (+R$ 90,00)';
+      else if (comboBrigadeiros === '1cento') textoBrig = '1 Cento (100 un) de Brigadeiros Gourmet (+R$ 180,00)';
+      else if (comboBrigadeiros === '2centos') textoBrig = '2 Centos (200 un) de Brigadeiros Gourmet (+R$ 360,00)';
+      else if (comboBrigadeiros === '3centos') textoBrig = '3 Centos (300 un) de Brigadeiros Gourmet (+R$ 540,00)';
+      else if (comboBrigadeiros === '4centos') textoBrig = '4 Centos (400 un) de Brigadeiros Gourmet (+R$ 720,00)';
+      combosAdicionados.push(textoBrig);
+    }
+    if (comboBentoCakes > 0) {
+      combosAdicionados.push(`+ ${comboBentoCakes} Bentô Cake(s) Extra(s) (+R$ ${(comboBentoCakes * 60.00).toFixed(2).replace('.', ',')})`);
+    }
+
+    if (combosAdicionados.length > 0) {
+      combinedNotes += `\n\n🛍️ *Adicionais do Combo:* \n${combosAdicionados.join('\n')}`;
     }
 
     const link = generateWhatsAppLink({
@@ -324,7 +341,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
 
           {/* Seleção do Sabor / Recheio para Bento e Bolos */}
           {product.flavors && product.flavors.length > 0 && product.category !== 'brigadeiros' && (
-            <div className="space-y-2">
+            <div className="space-y-2 font-sans text-xs">
               <label className="block text-xs font-bold text-[#3D2B1F] uppercase tracking-wider">
                 2. Escolha o Recheio de sua Preferência:
               </label>
@@ -339,6 +356,11 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                   </option>
                 ))}
               </select>
+              {isSpecialBoloFlavor && product.category === 'bolos' && (
+                <p className="text-[11px] text-[#E18126] font-bold mt-1 bg-[#E18126]/5 p-2.5 rounded-lg border border-[#E18126]/10">
+                  * Este recheio especial possui ingredientes nobres (Nutella / Geleia de Morango / Nozes) e tem um acréscimo de R$ 10,00 por kg (incluso no cálculo total).
+                </p>
+              )}
             </div>
           )}
 
@@ -519,55 +541,63 @@ export const OrderModal: React.FC<OrderModalProps> = ({
             </div>
           )}
 
-          {/* Checklist de Combo com Desconto (Interactive Upsell) */}
-          <div className="bg-amber-50/40 p-5 rounded-2xl border border-[#E18126]/20 space-y-3">
+          {/* Monte seu Combo Especial (Combo Dinâmico) */}
+          <div className="bg-amber-50/40 p-5 rounded-2xl border border-[#E18126]/20 space-y-4 font-sans text-sm text-[#3D2B1F]">
             <h5 className="text-xs font-bold text-[#E18126] uppercase tracking-widest flex items-center gap-1">
-              <Percent className="w-4 h-4" /> Combo Premiado: Adicione e Ganhe Desconto!
+              <Sparkles className="w-4 h-4" /> Monte seu Combo Especial (Opcional)
             </h5>
             <p className="text-[11px] text-gray-500 font-medium">
-              Aproveite nossas ofertas exclusivas adicionando doces extras diretamente à sua encomenda:
+              Turbine a sua comemoração adicionando docinhos ou bentô cakes extras ao seu pedido com preços especiais:
             </p>
 
-            <div className="space-y-2 pt-1">
-              {UPSELL_OPTIONS.map((opt) => {
-                const isSelected = selectedUpsells.includes(opt.id);
-                return (
-                  <div
-                    key={opt.id}
-                    onClick={() => toggleUpsell(opt.id)}
-                    className={`flex items-center justify-between p-3.5 rounded-xl border transition-all cursor-pointer ${
-                      isSelected
-                        ? 'bg-white border-[#E18126] shadow-sm'
-                        : 'bg-white/60 border-gray-100 hover:border-gray-300'
-                    }`}
+            <div className="space-y-3">
+              {/* Adicionar Brigadeiros Gourmet */}
+              <div className="space-y-1.5">
+                <label className="block text-xs font-bold text-[#3D2B1F] uppercase tracking-wider">
+                  Adicionar Brigadeiros Gourmet Extras?
+                </label>
+                <select
+                  value={comboBrigadeiros}
+                  onChange={(e) => setComboBrigadeiros(e.target.value)}
+                  className="w-full p-3 rounded-xl border border-[#3D2B1F]/15 bg-white text-xs font-bold text-[#3D2B1F] focus:outline-none focus:ring-2 focus:ring-[#E18126]"
+                >
+                  <option value="none">Não adicionar docinhos</option>
+                  <option value="meio">Meio Cento (50 un) - +R$ 90,00</option>
+                  <option value="1cento">1 Cento (100 un) - +R$ 180,00</option>
+                  <option value="2centos">2 Centos (200 un) - +R$ 360,00</option>
+                  <option value="3centos">3 Centos (300 un) - +R$ 540,00</option>
+                  <option value="4centos">4 Centos (400 un) - +R$ 720,00</option>
+                </select>
+              </div>
+
+              {/* Adicionar Bentô Cakes */}
+              <div className="space-y-1.5">
+                <label className="block text-xs font-bold text-[#3D2B1F] uppercase tracking-wider">
+                  Adicionar Bentô Cake Extra? (R$ 60,00 cada)
+                </label>
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setComboBentoCakes(Math.max(0, comboBentoCakes - 1))}
+                    className="w-10 h-10 rounded-xl bg-white border border-[#3D2B1F]/15 text-sm font-bold text-[#3D2B1F] hover:border-[#E18126] transition-colors cursor-pointer"
                   >
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="checkbox"
-                        checked={isSelected}
-                        onChange={() => {}} // Tratado no clique do container
-                        className="rounded text-[#E18126] focus:ring-[#E18126] w-4 h-4 cursor-pointer"
-                      />
-                      <div>
-                        <span className="text-xs font-bold text-[#3D2B1F] block">
-                          {opt.title}
-                        </span>
-                        <span className="text-[10px] text-emerald-600 font-semibold block">
-                          {opt.savingsText}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-xs text-gray-400 line-through block">
-                        R$ {opt.originalPrice.toFixed(2).replace('.', ',')}
-                      </span>
-                      <span className="text-xs font-bold text-[#E18126] block">
-                        R$ {opt.discountPrice.toFixed(2).replace('.', ',')}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
+                    -
+                  </button>
+                  <span className="text-sm font-bold w-6 text-center">{comboBentoCakes}</span>
+                  <button
+                    type="button"
+                    onClick={() => setComboBentoCakes(Math.min(4, comboBentoCakes + 1))}
+                    className="w-10 h-10 rounded-xl bg-white border border-[#3D2B1F]/15 text-sm font-bold text-[#3D2B1F] hover:border-[#E18126] transition-colors cursor-pointer"
+                  >
+                    +
+                  </button>
+                  {comboBentoCakes > 0 && (
+                    <span className="text-xs font-bold text-[#E18126]">
+                      +R$ {(comboBentoCakes * 60.00).toFixed(2).replace('.', ',')}
+                    </span>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 
@@ -624,13 +654,6 @@ export const OrderModal: React.FC<OrderModalProps> = ({
           {/* Rodapé e Envio WhatsApp */}
           <div className="pt-4 border-t border-[#3D2B1F]/10 space-y-4">
             
-            {/* Economias obtidas */}
-            {totalSavings > 0 && (
-              <div className="bg-emerald-50 text-emerald-800 text-xs font-semibold px-4 py-2 rounded-xl flex items-center justify-between border border-emerald-100">
-                <span>Combo Ativo: Você economizou nesta compra!</span>
-                <span className="font-bold">-{`R$ ${totalSavings.toFixed(2).replace('.', ',')}`}</span>
-              </div>
-            )}
 
             <div className="flex items-center justify-between text-sm font-bold text-[#3D2B1F]">
               <span>Valor Total da Encomenda:</span>

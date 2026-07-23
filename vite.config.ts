@@ -12,7 +12,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@bento': path.resolve(__dirname, './Bento Cakes'),
+      '@bento': path.resolve(__dirname, './BentoCakes'),
       '@bolos': path.resolve(__dirname, './Bolos confeitados'),
       '@kits': path.resolve(__dirname, './Kit festa'),
       '@brigadeiros': path.resolve(__dirname, './Brigadeiros'),

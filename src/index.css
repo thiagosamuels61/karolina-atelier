@@ -6,19 +6,24 @@
   --color-brand-cream: #FAF6F0;
   --color-brand-text: #2E2218;
   
-  --font-serif: "Fraunces", serif;
-  --font-sans: "Montserrat", sans-serif;
+  --font-serif: Georgia, serif;
+  --font-sans: Arial, sans-serif;
+  --font-script: "Sacramento", cursive;
 }
 
 @layer base {
   body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     background-color: #FAF6F0;
     color: #2E2218;
   }
 
   h1, h2, h3, h4, h5, h6, .font-serif {
-    font-family: 'Fraunces', serif;
+    font-family: Georgia, serif;
+  }
+  
+  .font-script {
+    font-family: "Sacramento", cursive;
   }
 }
 
@@ -157,5 +162,25 @@
 
 .animation-delay-500 {
   animation-delay: 500ms;
+}
+
+/* Infinite Scrolling Carousel Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  display: flex;
+  width: max-content;
+  animation: scroll 35s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
 }
 
