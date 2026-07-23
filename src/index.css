@@ -182,11 +182,7 @@
 .animate-scroll {
   display: flex;
   width: max-content;
-  animation: scroll 35s linear infinite;
-}
-
-.animate-scroll:hover {
-  animation-play-state: paused;
+  animation: scroll 60s linear infinite;
 }
 
 @keyframes scroll-right {
@@ -201,10 +197,6 @@
 .animate-scroll-right {
   display: flex;
   width: max-content;
-  animation: scroll-right 35s linear infinite;
-}
-
-.animate-scroll-right:hover {
-  animation-play-state: paused;
+  animation: scroll-right 60s linear infinite;
 }
 
