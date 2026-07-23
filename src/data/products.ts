@@ -57,6 +57,11 @@ import bentoLoving from '@bento/Captura_de_tela_2026-07-23_071042.png_2026072307
 import boloCelebre1 from '@bolos/Captura de tela 2026-07-21 140447.png';
 import boloCelebre2 from '@bolos/Captura de tela 2026-07-21 140451.png';
 
+// Imagens específicas de seção da pasta Preço dos produtos
+import sectionBentoImg from '@images/Preço dos produtos/bento cake.png';
+import sectionBoloImg from '@images/Preço dos produtos/bolo.png';
+import sectionBrigadeiroImg from '@images/Preço dos produtos/brigadeiro.png';
+
 // Fotos do Carrossel de 1 a 14
 import carImg1 from '@images/Fotos para o carrossel/1.png';
 import carImg2 from '@images/Fotos para o carrossel/2.png';
@@ -177,7 +182,7 @@ export const BENTO_CAKES_LIST: Product[] = [
     description: 'Mini bolo na marmita de 10cm com cobertura em buttercream e decoração simples de até três cores com o personagem Flork e a sua frase personalizada. Acompanha lancheira biodegradável.',
     minLeadTimeDays: 1,
     minLeadTimeText: 'Encomenda com 1 dia de antecedência',
-    image: bentoHighlight,
+    image: sectionBentoImg,
     gallery: [bentoHighlight, bentoImg1, bentoImg2, bentoImg3, bentoImg4],
     isPopular: true,
     hasCustomPhrase: true,
@@ -210,7 +215,7 @@ export const BOLOS_CONFEITADOS_LIST: Product[] = [
     description: 'Bolos festivos com cobertura premium em Chantininho e decorações artesanais sofisticadas. Massa umedecida e fofinha com camadas caprichadas de recheio. Obs: Sabores especiais possuem acréscimo de R$ 10,00/kg.',
     minLeadTimeDays: 2,
     minLeadTimeText: 'Encomenda com 2 dias de antecedência',
-    image: boloImg3,
+    image: sectionBoloImg,
     gallery: [boloImg3, boloImg1, boloImg2, boloImg4, boloImg5],
     isPopular: true,
     flavors: [
@@ -248,7 +253,7 @@ export const BRIGADEIROS_LIST: Product[] = [
     description: 'Docinhos finos enrolados individualmente com confeitos selecionados e chocolate nobre. Escolha até 3 sabores por cento. Favor nos enviar a cor desejada das forminhas no WhatsApp.',
     minLeadTimeDays: 2,
     minLeadTimeText: 'Encomenda com 2 dias de antecedência',
-    image: brigImg1,
+    image: sectionBrigadeiroImg,
     gallery: [brigImg1, brigImg2, brigImg3, brigImg4],
     isPopular: true,
     flavors: [

@@ -267,32 +267,17 @@ export const OrderModal: React.FC<OrderModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm animate-in fade-in">
       <div className="relative w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl border border-black/5 max-h-[92vh] flex flex-col overflow-hidden">
         
-        {/* Header do Modal */}
-        <div className="bg-[#3D2B1F] text-[#FAF6F0] p-5 sm:p-6 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#E18126] flex items-center justify-center text-white">
-              <Sparkles className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="text-[10px] uppercase tracking-widest text-amber-200 font-bold block">
-                Monte seu Pedido • Karolina Atelier
-              </span>
-              <h3 className="font-serif font-bold text-lg sm:text-xl text-white">
-                {product.title}
-              </h3>
-            </div>
-          </div>
-
-          <button
-            onClick={onClose}
-            className="p-2 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
-          >
-            <X className="w-6 h-6" />
-          </button>
-        </div>
+        {/* Botão Fechar Flutuante */}
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 p-2 rounded-full text-[#3D2B1F]/60 hover:text-[#3D2B1F] hover:bg-[#3D2B1F]/10 transition-colors cursor-pointer"
+        >
+          <X className="w-6 h-6" />
+        </button>
 
         {/* Formulário Interativo de Personalização */}
-        <form onSubmit={handleSubmitOrder} className="p-6 overflow-y-auto space-y-6 flex-1 bg-[#FAF6F0]/20">
+        <form onSubmit={handleSubmitOrder} className="p-6 pt-12 overflow-y-auto space-y-6 flex-1 bg-[#FAF6F0]/20">
           
           {/* Card Resumo com Foto */}
           <div className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-[#3D2B1F]/10 shadow-sm">

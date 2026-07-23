@@ -1,6 +1,6 @@
 import React from 'react';
 import { type Product, BENTO_CAKES_LIST, BOLOS_CONFEITADOS_LIST, BRIGADEIROS_LIST } from '../data/products';
-import { ShoppingBag, Clock, Check } from 'lucide-react';
+import { ShoppingBag, Clock } from 'lucide-react';
 
 interface VirtualMenuProps {
   onSelectProduct: (product: Product) => void;
@@ -10,9 +10,6 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
   
   // Renderiza card de produto unificado em 2 colunas (Layout conforme figma/referências)
   const renderProductSection = (product: Product) => {
-    const isBento = product.category === 'bento';
-    const isBolo = product.category === 'bolos';
-    const isBrigadeiro = product.category === 'brigadeiros';
 
     return (
       <div
@@ -57,81 +54,6 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
               {product.description}
             </p>
 
-            {/* Detalhes Específicos por Categoria */}
-            {isBento && (
-              <div className="space-y-3 pt-2">
-                <span className="text-xs font-bold text-[#3D2B1F] uppercase tracking-wider block">
-                  Recheios e Massas:
-                </span>
-                <ul className="text-xs sm:text-sm text-[#3D2B1F]/80 grid grid-cols-1 sm:grid-cols-2 gap-2 font-medium">
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#C0707D] flex-shrink-0" />
-                    <span>Massa Chocolate ou Baunilha</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#C0707D] flex-shrink-0" />
-                    <span>Recheio Brigadeiro ou Beijinho</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#C0707D] flex-shrink-0" />
-                    <span>Recheio Ninho ou Doce de Leite</span>
-                  </li>
-                  <li className="flex items-center gap-2 text-[#C0707D] font-semibold">
-                    <Check className="w-4 h-4 text-[#C0707D] flex-shrink-0" />
-                    <span>Ninho c/ Nutella ou Morango (+R$ 5,00)</span>
-                  </li>
-                </ul>
-                <p className="text-[11px] text-[#C0707D] font-bold block pt-1 bg-[#C0707D]/5 p-2 rounded-lg border border-[#C0707D]/10 w-fit">
-                  🎁 Acompanha de brinde: 1 vela, 1 colher e laço para presente.
-                </p>
-              </div>
-            )}
-
-            {isBolo && (
-              <div className="space-y-3 pt-2">
-                <span className="text-xs font-bold text-[#3D2B1F] uppercase tracking-wider block">
-                  Opções de Recheios em Chantininho:
-                </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-[#3D2B1F]/80 font-medium">
-                  {product.flavors?.map((flv, idx) => {
-                    const isSpecial = flv.includes('+R$');
-                    return (
-                      <div key={idx} className="flex items-center gap-2">
-                        <Check className="w-4 h-4 text-[#C0707D] flex-shrink-0" />
-                        <span className={isSpecial ? 'text-[#C0707D] font-semibold' : ''}>
-                          {flv}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className="pt-2 text-xs text-gray-500 font-medium space-y-1">
-                  <p>• Peso mínimo para confecção: 1 kg.</p>
-                  <p>• Cobertura com Glitter/Brilho/Aveludado: acréscimo de R$ 10,00 por kg.</p>
-                  <p>• Embalagem protetora especial inclusa por apenas R$ 8,00.</p>
-                </div>
-              </div>
-            )}
-
-            {isBrigadeiro && (
-              <div className="space-y-3 pt-2">
-                <span className="text-xs font-bold text-[#3D2B1F] uppercase tracking-wider block">
-                  Sabores inclusos no cento (Escolha até 3 por cento):
-                </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-[#3D2B1F]/80 font-medium">
-                  {product.flavors?.map((flv, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-[#C0707D] flex-shrink-0" />
-                      <span>{flv}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="pt-2 text-xs text-gray-500 font-medium space-y-1">
-                  <p>• Forminhas decorativas inclusas (cores combinadas após o pedido).</p>
-                  <p>• Perfeitos para comemorações e eventos corporativos.</p>
-                </div>
-              </div>
-            )}
 
           </div>
 
