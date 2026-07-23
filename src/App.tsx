@@ -76,11 +76,8 @@ export function App() {
             className="h-28 w-auto mx-auto object-contain mb-8 animate-pulse-subtle animate-fade-in-up"
             style={{ animationDuration: '6s' }}
           />
-          <h1 className="font-serif font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#3D2B1F] tracking-tight leading-none max-w-3xl mx-auto animate-fade-in-up animation-delay-100">
-            Bolos e Doces artesanais sob
-          </h1>
-          <h1 className="font-serif font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#3D2B1F] tracking-tight leading-none max-w-3xl mx-auto mt-2 animate-fade-in-up animation-delay-150">
-            encomenda
+          <h1 className="font-serif font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#3D2B1F] tracking-tight leading-tight max-w-[1000px] mx-auto animate-fade-in-up animation-delay-100">
+            Bolos e Doces artesanais sob <br className="hidden sm:block" /> encomenda
           </h1>
           <p className="font-script text-4xl sm:text-5xl lg:text-6xl text-[#C0707D] mt-4 animate-fade-in-up animation-delay-200">
             direto no seu WhatsApp
@@ -115,7 +112,7 @@ export function App() {
                   key={`c1-${idx}`}
                   src={img}
                   alt={`Inspiração ${idx}`}
-                  className="w-[280px] h-[320px] sm:w-[350px] sm:h-[400px] md:w-[430px] md:h-[480px] object-cover flex-shrink-0"
+                  className="w-[280px] h-[320px] sm:w-[350px] sm:h-[400px] md:w-[430px] md:h-[480px] object-cover flex-shrink-0 pr-[4px]"
                 />
               ))}
               {/* Set de Imagens 2 (Duplicado para rolagem infinita) */}
@@ -124,7 +121,7 @@ export function App() {
                   key={`c2-${idx}`}
                   src={img}
                   alt={`Inspiração Duplicada ${idx}`}
-                  className="w-[280px] h-[320px] sm:w-[350px] sm:h-[400px] md:w-[430px] md:h-[480px] object-cover flex-shrink-0"
+                  className="w-[280px] h-[320px] sm:w-[350px] sm:h-[400px] md:w-[430px] md:h-[480px] object-cover flex-shrink-0 pr-[4px]"
                 />
               ))}
             </div>
