@@ -47,11 +47,11 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
               <span className="text-xs sm:text-sm font-bold text-[#3D2B1F]/60 block leading-none">
                 A partir de
               </span>
-              <div className="flex items-baseline gap-2">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
                 <span className="text-3xl sm:text-4xl font-serif font-extrabold text-[#C0707D] leading-none">
                   {product.priceText}
                 </span>
-                <span className="text-xs text-gray-500 font-bold">
+                <span className="text-xs text-[#3D2B1F]/60 font-bold">
                   {product.unitText}
                 </span>
               </div>
