@@ -11,13 +11,12 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
   // Renderiza card de produto unificado em 2 colunas (Layout conforme figma/referências)
   const renderProductSection = (product: Product) => {
 
-    return (
-      <div
+    return (      <div
         key={product.id}
         className="flex flex-col md:flex-row gap-8 md:gap-12 py-12 border-b border-[#3D2B1F]/10 last:border-b-0 font-sans"
       >
-        {/* Coluna da Imagem (Dimensões exatas: 704x766px em desktop) */}
-        <div className="w-full h-80 sm:h-[450px] md:w-[704px] md:h-[766px] overflow-hidden rounded-[2rem] shadow-sm bg-white flex-shrink-0">
+        {/* Coluna da Imagem (Dimensões exatas: 500x500px em desktop) */}
+        <div className="w-full h-80 sm:h-[450px] md:w-[500px] md:h-[500px] overflow-hidden rounded-[2rem] shadow-sm bg-white flex-shrink-0">
           <img
             src={product.image}
             alt={product.title}
@@ -39,21 +38,24 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
               {product.title}
             </h3>
 
-            {/* Preço em destaque diretamente */}
-            <div className="flex items-baseline gap-2 pt-1">
-              <span className="text-sm font-bold text-[#3D2B1F]/60">A partir de</span>
-              <span className="text-3xl sm:text-4xl font-serif font-extrabold text-[#C0707D]">
-                {product.priceText}
-              </span>
-              <span className="text-xs text-gray-500 font-bold">
-                {product.unitText}
-              </span>
-            </div>
-
-            <p className="text-sm sm:text-base text-[#3D2B1F]/70 leading-relaxed font-medium">
+            <p className="text-base text-[#3D2B1F]/70 leading-relaxed font-medium">
               {product.description}
             </p>
 
+            {/* Preço em destaque diretamente (Abaixo da descrição, conforme solicitado) */}
+            <div className="space-y-1 pt-1">
+              <span className="text-xs sm:text-sm font-bold text-[#3D2B1F]/60 block leading-none">
+                A partir de
+              </span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl sm:text-4xl font-serif font-extrabold text-[#C0707D] leading-none">
+                  {product.priceText}
+                </span>
+                <span className="text-xs text-gray-500 font-bold">
+                  {product.unitText}
+                </span>
+              </div>
+            </div>
 
           </div>
 
@@ -81,7 +83,7 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
             Informações sobre Encomendas
           </h4>
           <p className="text-xs sm:text-sm text-gray-500 leading-relaxed font-sans font-bold">
-            Bento cakes com <strong>1 dia de antecedência</strong> e bolos com <strong>2 dias de antecedência</strong>.
+            Bento cakes com <strong>1 dia de antecedência</strong> e bolos e brigadeiros com <strong>2 dias de antecedência</strong>.
           </p>
         </div>
       </div>

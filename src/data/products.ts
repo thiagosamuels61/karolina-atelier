@@ -209,9 +209,9 @@ export const BOLOS_CONFEITADOS_LIST: Product[] = [
     id: 'bolos-confeitados-premium',
     title: 'Bolos Festivos & Confeitados',
     category: 'bolos',
-    price: 85.00, // Preço por kg
-    priceText: 'A partir de R$ 85,00 / kg',
-    unitText: 'escolha de 1 a 4kg (+ R$ 8,00 embalagem)',
+    price: 127.50, // Preço por 1.5 kg mínimo
+    priceText: 'R$ 127,50',
+    unitText: 'a partir de 1,5kg',
     description: 'Bolos festivos com cobertura premium em Chantininho e decorações artesanais sofisticadas. Massa umedecida e fofinha com camadas caprichadas de recheio. Obs: Sabores especiais possuem acréscimo de R$ 10,00/kg.',
     minLeadTimeDays: 2,
     minLeadTimeText: 'Encomenda com 2 dias de antecedência',
@@ -234,10 +234,10 @@ export const BOLOS_CONFEITADOS_LIST: Product[] = [
       'Doce de Leite com Nozes (+R$ 10,00 / kg)'
     ],
     sizes: [
-      { label: '1 kg (serve até 10 pessoas)', priceModifier: 0 },
-      { label: '2 kg (serve até 20 pessoas)', priceModifier: 85.00 },
-      { label: '3 kg (serve até 30 pessoas)', priceModifier: 170.00 },
-      { label: '4 kg (serve até 40 pessoas)', priceModifier: 255.00 },
+      { label: '1,5 kg (serve até 15 pessoas)', priceModifier: 0 },
+      { label: '2 kg (serve até 20 pessoas)', priceModifier: 42.50 },
+      { label: '3 kg (serve até 30 pessoas)', priceModifier: 127.50 },
+      { label: '4 kg (serve até 40 pessoas)', priceModifier: 212.50 },
     ],
   },
 ];
@@ -248,7 +248,7 @@ export const BRIGADEIROS_LIST: Product[] = [
     title: 'Brigadeiros Gourmet Artesanais',
     category: 'brigadeiros',
     price: 180.00,
-    priceText: 'A partir de R$ 90,00',
+    priceText: 'R$ 90,00',
     unitText: 'Escolha a quantidade desejada',
     description: 'Docinhos finos enrolados individualmente com confeitos selecionados e chocolate nobre. Escolha até 3 sabores por cento. Favor nos enviar a cor desejada das forminhas no WhatsApp.',
     minLeadTimeDays: 2,

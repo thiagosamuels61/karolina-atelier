@@ -103,7 +103,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
   }, [product, initialPhrase]);
 
   // Calcula peso do bolo em kg
-  let boloWeight = 1;
+  let boloWeight = 1.5;
   if (selectedSize.includes('2 kg')) boloWeight = 2;
   else if (selectedSize.includes('3 kg')) boloWeight = 3;
   else if (selectedSize.includes('4 kg')) boloWeight = 4;
@@ -359,7 +359,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                 <input
                   type="text"
                   required
-                  placeholder="Ex: Brigadeiro ao leite, Ninho com nutella, Casadinho"
+                  placeholder=""
                   value={brigadeiroFlavorsText}
                   onChange={(e) => setBrigadeiroFlavorsText(e.target.value)}
                   className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm text-[#3D2B1F] focus:outline-none focus:ring-2 focus:ring-[#C0707D]"
@@ -372,7 +372,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                 </label>
                 <input
                   type="text"
-                  placeholder="Ex: Forminhas brancas, vermelhas, azuis..."
+                  placeholder=""
                   value={brigadeiroForminhaColor}
                   onChange={(e) => setOriginalForminhaColor(e)}
                   className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm text-[#3D2B1F] focus:outline-none focus:ring-2 focus:ring-[#C0707D]"
@@ -395,7 +395,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
               <input
                 type="text"
                 maxLength={50}
-                placeholder="Escreva a frase desejada"
+                placeholder=""
                 value={bentoPhrase}
                 onChange={(e) => setBentoPhrase(e.target.value)}
                 className={`w-full px-4 py-3.5 rounded-xl border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#C0707D] text-[#3D2B1F] ${
@@ -614,7 +614,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
               <input
                 type="text"
                 required
-                placeholder="Seu nome"
+                placeholder=""
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
                 className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#C0707D]"
@@ -625,11 +625,11 @@ export const OrderModal: React.FC<OrderModalProps> = ({
           {/* Observações */}
           <div className="space-y-1.5">
             <label className="block text-xs font-bold text-[#3D2B1F] uppercase tracking-wider">
-              Bairro em Ceilândia ou Observações:
+              Observações:
             </label>
             <textarea
               rows={2}
-              placeholder="Ex: Gostaria de retirar pela tarde, etc..."
+              placeholder=""
               value={additionalNotes}
               onChange={(e) => setAdditionalNotes(e.target.value)}
               className="w-full p-3.5 rounded-xl border border-[#3D2B1F]/15 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#C0707D]"
