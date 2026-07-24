@@ -11,7 +11,6 @@ import {
   bentoHighlight,
   bentoCelebre,
   bentoFunny1,
-  bentoLoving,
   boloCelebre1,
   boloCelebre2
 } from './data/products';
@@ -213,32 +212,6 @@ export function App() {
               </div>
             </div>
 
-            {/* Tema 3: Presenteie de forma amorosa */}
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 bg-[#FAF6F0]/40 p-6 sm:p-10 rounded-[2.5rem] border border-[#3D2B1F]/5">
-              <div className="flex-1 space-y-4">
-                <h3 className="font-serif font-bold text-2xl sm:text-3xl text-[#3D2B1F]">
-                  Presenteie de forma amorosa
-                </h3>
-                <p className="text-sm text-[#3D2B1F]/70 leading-relaxed font-sans">
-                  Demonstre todo o seu carinho com decorações românticas e delicadas. Personalize o Bentô com corações, flores e frases carinhosas feitas sob medida para surpreender quem você ama em datas românticas, casamentos ou comemorações.
-                </p>
-                <div className="pt-2">
-                  <a
-                    href="#bento"
-                    className="inline-flex bg-[#3D2B1F] hover:bg-[#C0707D] text-white font-bold text-xs px-6 py-3 rounded-full transition-colors font-sans cursor-pointer shadow-sm"
-                  >
-                    Personalizar bentô de amor
-                  </a>
-                </div>
-              </div>
-              <div className="flex-1 w-full max-w-md">
-                <img
-                  src={bentoLoving}
-                  alt="Bentô Romântico"
-                  className="w-full h-64 object-cover rounded-2xl border border-[#3D2B1F]/10 shadow-sm mx-auto"
-                />
-              </div>
-            </div>
 
           </div>
         </section>
