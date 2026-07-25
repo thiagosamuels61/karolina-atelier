@@ -116,7 +116,7 @@ export const VirtualMenu: React.FC<VirtualMenuProps> = ({ onSelectProduct }) => 
               Bolos Festivos e Confeitados
             </h2>
             <p className="text-xs sm:text-sm text-gray-400 mt-1 font-sans">
-              Feitos por kg (mínimo de 1kg). Cobertura em Chantininho cremoso estruturado.
+              Feitos por kg (mínimo de 1,5kg). Cobertura em Chantininho cremoso estruturado.
             </p>
           </div>
           <span className="text-xs font-bold text-[#C0707D] bg-[#C0707D]/10 px-4 py-1.5 rounded-full uppercase tracking-wider w-fit font-sans">

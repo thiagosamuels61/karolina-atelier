@@ -209,9 +209,9 @@ export const BOLOS_CONFEITADOS_LIST: Product[] = [
     id: 'bolos-confeitados-premium',
     title: 'Bolos Festivos & Confeitados',
     category: 'bolos',
-    price: 127.50, // Preço por 1.5 kg mínimo
+    price: 127.50, // Preço por 1.5 kg mínimo (R$ 85,00/kg)
     priceText: 'R$ 127,50',
-    unitText: 'a partir de 1,5kg',
+    unitText: 'a partir de 1,5kg (R$ 85,00/kg)',
     description: 'Bolos festivos com cobertura premium em Chantininho e decorações artesanais sofisticadas. Massa umedecida e fofinha com camadas caprichadas de recheio. Obs: Sabores especiais possuem acréscimo de R$ 10,00/kg.',
     minLeadTimeDays: 2,
     minLeadTimeText: 'Encomenda com 2 dias de antecedência',

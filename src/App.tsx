@@ -32,6 +32,41 @@ export function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Controla o título da aba quando o usuário altera de aba
+  useEffect(() => {
+    const originalTitle = document.title;
+    let intervalId: number | undefined;
+    let showFirstMessage = true;
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // Alterna entre as duas mensagens em loop infinito
+        intervalId = window.setInterval(() => {
+          document.title = showFirstMessage 
+            ? "Ei, volta pra cá!" 
+            : "Finalize sua encomenda!";
+          showFirstMessage = !showFirstMessage;
+        }, 1500);
+      } else {
+        // Limpa o intervalo e restaura o título original
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = undefined;
+        }
+        document.title = originalTitle;
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, []);
+
   const handleOpenModal = (product: Product, phrase?: string) => {
     setSelectedProduct(product);
     if (phrase) setInitialPhrase(phrase);
