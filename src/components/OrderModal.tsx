@@ -148,7 +148,8 @@ export const OrderModal: React.FC<OrderModalProps> = ({
 
   // Adicionais de Combo Dinâmico
   let brigadeirosCost = 0;
-  if (comboBrigadeiros === 'meio') brigadeirosCost = 90.00;
+  if (comboBrigadeiros === '25un') brigadeirosCost = 45.00;
+  else if (comboBrigadeiros === 'meio') brigadeirosCost = 90.00;
   else if (comboBrigadeiros === '1cento') brigadeirosCost = 180.00;
   else if (comboBrigadeiros === '2centos') brigadeirosCost = 360.00;
   else if (comboBrigadeiros === '3centos') brigadeirosCost = 540.00;
@@ -237,7 +238,8 @@ export const OrderModal: React.FC<OrderModalProps> = ({
     const combosAdicionados: string[] = [];
     if (comboBrigadeiros !== 'none') {
       let textoBrig = '';
-      if (comboBrigadeiros === 'meio') textoBrig = 'Meio Cento (50 un) de Brigadeiros Gourmet (+R$ 90,00)';
+      if (comboBrigadeiros === '25un') textoBrig = '25 Brigadeiros Gourmet (+R$ 45,00)';
+      else if (comboBrigadeiros === 'meio') textoBrig = 'Meio Cento (50 un) de Brigadeiros Gourmet (+R$ 90,00)';
       else if (comboBrigadeiros === '1cento') textoBrig = '1 Cento (100 un) de Brigadeiros Gourmet (+R$ 180,00)';
       else if (comboBrigadeiros === '2centos') textoBrig = '2 Centos (200 un) de Brigadeiros Gourmet (+R$ 360,00)';
       else if (comboBrigadeiros === '3centos') textoBrig = '3 Centos (300 un) de Brigadeiros Gourmet (+R$ 540,00)';
@@ -594,6 +596,9 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                   className="w-full p-3 rounded-xl border border-[#3D2B1F]/15 bg-white text-xs font-bold text-[#3D2B1F] focus:outline-none focus:ring-2 focus:ring-[#C0707D]"
                 >
                   <option value="none">Não adicionar docinhos</option>
+                  {product.category !== 'bolos' && (
+                    <option value="25un">25 unidades - +R$ 45,00</option>
+                  )}
                   <option value="meio">Meio Cento (50 un) - +R$ 90,00</option>
                   <option value="1cento">1 Cento (100 un) - +R$ 180,00</option>
                   <option value="2centos">2 Centos (200 un) - +R$ 360,00</option>

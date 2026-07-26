@@ -248,8 +248,8 @@ export const BRIGADEIROS_LIST: Product[] = [
     title: 'Brigadeiros Gourmet Artesanais',
     category: 'brigadeiros',
     price: 180.00,
-    priceText: 'R$ 90,00',
-    unitText: 'Escolha a quantidade desejada',
+    priceText: 'R$ 180,00',
+    unitText: 'o cento (a partir de 25 unidades)',
     description: 'Docinhos finos enrolados individualmente com confeitos selecionados e chocolate nobre. Escolha até 3 sabores por cento. Favor nos enviar a cor desejada das forminhas no WhatsApp.',
     minLeadTimeDays: 2,
     minLeadTimeText: 'Encomenda com 2 dias de antecedência',
@@ -265,8 +265,9 @@ export const BRIGADEIROS_LIST: Product[] = [
       'Bicho de Pé (Moranguinho)',
     ],
     sizes: [
-      { label: 'Meio Cento (50 unidades)', priceModifier: -90.00 },
-      { label: 'Cento Completo (100 unidades)', priceModifier: 0 },
+      { label: '25 unidades', priceModifier: -135.00 },
+      { label: '50 unidades (Meio Cento)', priceModifier: -90.00 },
+      { label: '100 unidades (Cento Completo)', priceModifier: 0 },
     ],
   },
 ];
