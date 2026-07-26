@@ -16,6 +16,26 @@
       "dest": "/assets/$1"
     },
     {
+      "src": "/favicon\\.jpg",
+      "dest": "/favicon.jpg"
+    },
+    {
+      "src": "/logo-share\\.jpg",
+      "dest": "/logo-share.jpg"
+    },
+    {
+      "src": "/logo-fundo-branco\\.png",
+      "dest": "/logo-fundo-branco.png"
+    },
+    {
+      "src": "/logo-transparente\\.png",
+      "dest": "/logo-transparente.png"
+    },
+    {
+      "src": "/icons\\.svg",
+      "dest": "/icons.svg"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }

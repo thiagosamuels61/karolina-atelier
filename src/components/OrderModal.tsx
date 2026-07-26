@@ -40,6 +40,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
   // Bolos Confeitados Adicionais (conforme flyer)
   const [boloGlitter, setBoloGlitter] = useState(false);
   const [boloCoracao, setBoloCoracao] = useState(false);
+  const [boloEmbalagem, setBoloEmbalagem] = useState<'none' | 'sem' | 'com'>('none');
 
   // Brigadeiros Gourmet Adicionais (conforme flyer)
   const [brigadeiroForminhaColor, setBrigadeiroForminhaColor] = useState('');
@@ -94,6 +95,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
       setBentoVela(false);
       setBoloGlitter(false);
       setBoloCoracao(false);
+      setBoloEmbalagem('none');
       setBrigadeiroForminhaColor('');
       setBrigadeiroFlavorsText('');
       if (product.hasCustomPhrase) {
@@ -119,8 +121,8 @@ export const OrderModal: React.FC<OrderModalProps> = ({
     }
   }
 
-  // Custo de embalagem de bolos (R$ 8,00 fixo no folheto)
-  const packagingCost = product.category === 'bolos' ? 8.00 : 0;
+  // Custo de embalagem de bolo (opcional, escolha do cliente)
+  const packagingCost = (product.category === 'bolos' && boloEmbalagem === 'com') ? 8.00 : 0;
 
   // Adicionais do Bentô Cake
   let bentoExtras = 0;
@@ -165,6 +167,11 @@ export const OrderModal: React.FC<OrderModalProps> = ({
       return;
     }
 
+    if (product.category === 'bolos' && boloEmbalagem === 'none') {
+      alert('Por favor, escolha se deseja ou não a embalagem para o bolo.');
+      return;
+    }
+
     // Confetes de celebração
     confetti({
       particleCount: 80,
@@ -201,7 +208,11 @@ export const OrderModal: React.FC<OrderModalProps> = ({
     }
 
     if (product.category === 'bolos') {
-      combinedNotes += `\nEmbalagem de Bolo inclusa (+R$ 8,00)`;
+      if (boloEmbalagem === 'com') {
+        combinedNotes += `\nEmbalagem de Bolo inclusa (+R$ 8,00)`;
+      } else if (boloEmbalagem === 'sem') {
+        combinedNotes += `\nCliente optou por não incluir embalagem`;
+      }
       const extras: string[] = [];
       if (boloGlitter) extras.push('Cobertura Aveludada/Glitter (+R$ 10,00 por kg)');
       if (boloCoracao) extras.push('Desejo formato Coração / Vintage (a consultar)');
@@ -519,9 +530,45 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                 </button>
               </div>
 
+              {/* Opção de Embalagem (obrigatória) */}
+              <div className="space-y-2 pt-1">
+                <label className="block text-xs font-bold text-[#3D2B1F] uppercase tracking-wider">
+                  Embalagem do Bolo (obrigatório):
+                </label>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setBoloEmbalagem('sem')}
+                    className={`p-3.5 rounded-xl text-xs font-bold flex items-center justify-between border transition-all cursor-pointer text-left ${
+                      boloEmbalagem === 'sem'
+                        ? 'bg-[#3D2B1F] text-[#FAF6F0] border-[#3D2B1F]'
+                        : 'bg-white text-[#3D2B1F] border-[#3D2B1F]/15 hover:border-[#C0707D]'
+                    }`}
+                  >
+                    <span>Sem Embalagem</span>
+                    <span className="text-[10px] font-extrabold opacity-70">Grátis</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setBoloEmbalagem('com')}
+                    className={`p-3.5 rounded-xl text-xs font-bold flex items-center justify-between border transition-all cursor-pointer text-left ${
+                      boloEmbalagem === 'com'
+                        ? 'bg-[#3D2B1F] text-[#FAF6F0] border-[#3D2B1F]'
+                        : 'bg-white text-[#3D2B1F] border-[#3D2B1F]/15 hover:border-[#C0707D]'
+                    }`}
+                  >
+                    <span>Com Embalagem</span>
+                    <span className={`text-[10px] font-extrabold whitespace-nowrap ml-2 ${boloEmbalagem === 'com' ? 'text-[#FAF6F0]/80' : 'text-[#C0707D]'}`}>+R$ 8,00</span>
+                  </button>
+                </div>
+                {boloEmbalagem === 'none' && (
+                  <p className="text-[10px] text-red-400 font-semibold">* Selecione uma opção de embalagem para continuar.</p>
+                )}
+              </div>
+
               <div className="flex items-center gap-2 p-3 bg-amber-50 rounded-xl border border-amber-200/50 text-[11px] text-amber-800 font-semibold leading-relaxed">
                 <Info className="w-4 h-4 text-amber-600 flex-shrink-0" />
-                <span>Nota: Conforme o folheto do atelier, o topper de bolo não está incluso e a taxa de embalagem de R$ 8,00 já foi adicionada ao total.</span>
+                <span>Observação: O topper de bolo não está incluso{boloEmbalagem === 'com' ? ' e a taxa de embalagem de R$ 8,00 já foi adicionada ao total' : ''}.</span>
               </div>
             </div>
           )}
@@ -647,9 +694,9 @@ export const OrderModal: React.FC<OrderModalProps> = ({
 
             <button
               type="submit"
-              disabled={!!dateError || !eventDate}
+              disabled={!!dateError || !eventDate || (product.category === 'bolos' && boloEmbalagem === 'none')}
               className={`w-full text-white py-4 px-6 rounded-2xl font-bold text-base shadow-xl flex items-center justify-center gap-3 transition-all cursor-pointer ${
-                dateError || !eventDate
+                dateError || !eventDate || (product.category === 'bolos' && boloEmbalagem === 'none')
                   ? 'bg-gray-300 cursor-not-allowed shadow-none'
                   : 'bg-[#3D2B1F] hover:bg-[#a65663] hover:shadow-2xl hover:scale-[1.01]'
               }`}

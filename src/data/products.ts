@@ -209,8 +209,8 @@ export const BOLOS_CONFEITADOS_LIST: Product[] = [
     id: 'bolos-confeitados-premium',
     title: 'Bolos Festivos & Confeitados',
     category: 'bolos',
-    price: 127.50, // Preço por 1.5 kg mínimo (R$ 85,00/kg)
-    priceText: 'R$ 127,50',
+    price: 85.00, // Preço por kg
+    priceText: 'R$ 85,00',
     unitText: 'a partir de 1,5kg (R$ 85,00/kg)',
     description: 'Bolos festivos com cobertura premium em Chantininho e decorações artesanais sofisticadas. Massa umedecida e fofinha com camadas caprichadas de recheio. Obs: Sabores especiais possuem acréscimo de R$ 10,00/kg.',
     minLeadTimeDays: 2,
@@ -234,10 +234,10 @@ export const BOLOS_CONFEITADOS_LIST: Product[] = [
       'Doce de Leite com Nozes (+R$ 10,00 / kg)'
     ],
     sizes: [
-      { label: '1,5 kg (serve até 15 pessoas)', priceModifier: 0 },
-      { label: '2 kg (serve até 20 pessoas)', priceModifier: 42.50 },
-      { label: '3 kg (serve até 30 pessoas)', priceModifier: 127.50 },
-      { label: '4 kg (serve até 40 pessoas)', priceModifier: 212.50 },
+      { label: '1,5 kg (serve até 15 pessoas)', priceModifier: 42.50 },
+      { label: '2 kg (serve até 20 pessoas)', priceModifier: 85.00 },
+      { label: '3 kg (serve até 30 pessoas)', priceModifier: 170.00 },
+      { label: '4 kg (serve até 40 pessoas)', priceModifier: 255.00 },
     ],
   },
 ];
